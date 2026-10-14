@@ -1,0 +1,6 @@
+﻿Rule_ID,Rule_Name,Field,Operator,Value,Severity
+A3-R01,PEP Match,PEP_Flag,=,Yes,HIGH
+A3-R02,Sanctions Exact Match,Sanctions_Exact_Match,=,Yes,HIGH
+A3-R03,Watchlist Match,Watchlist_Flag,=,Yes,HIGH
+A3-R04,Adverse Media Match,Adverse_Media_Flag,=,Yes,MEDIUM
+A3-R05,Regulatory Enforcement,Regulatory_Enforcement_Flag,=,Yes,HIGH

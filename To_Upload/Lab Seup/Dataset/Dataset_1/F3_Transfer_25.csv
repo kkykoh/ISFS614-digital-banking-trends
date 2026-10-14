@@ -1,0 +1,26 @@
+Customer_ID,Customer_Name,Transfer_Amount,Transfer_Count_7D,Avg_Weekly_Transfer_Count,Total_Transfer_Value_7D,Avg_Weekly_Transfer_Value,Hours_Between_Incoming_Outgoing,Prior_Counterparty_History,Counterparty_Relationship,Round_Amount_Flag
+CUST7301,Chloe Tan,6000,3,3,9000,5000,48,Yes,Known,No
+CUST7302,Ryan Lim,6400,4,3,9400,5250,48,Yes,Known,No
+CUST7303,Aisha Noor,6800,3,3,9800,5500,48,Yes,Known,No
+CUST7304,Vikram Nair,7200,4,3,10200,5750,48,Yes,Known,No
+CUST7305,Hana Lee,7600,3,3,10600,6000,48,Yes,Known,No
+CUST7306,Ethan Goh,4500,2,3,7000,4000,36,Yes,Known,No
+CUST7307,Mei Chen,5100,3,3,7600,4250,48,Yes,Known,No
+CUST7308,Arjun Kumar,5700,4,3,8200,4500,60,Yes,Known,No
+CUST7309,Sofia Rahman,6300,5,3,8800,4750,36,Yes,Known,No
+CUST7310,Marcus Teo,6900,2,3,9400,5000,48,Yes,Known,No
+CUST7311,Nadia Wong,7500,3,3,10000,4000,60,Yes,Known,No
+CUST7312,Darren Chua,4500,4,3,7000,4250,36,Yes,Known,No
+CUST7313,Priya Menon,5100,5,3,7600,4500,48,Yes,Known,No
+CUST7314,Lucas Ong,5700,2,3,8200,4750,60,Yes,Known,No
+CUST7315,Farah Aziz,6300,3,3,8800,5000,36,Yes,Known,No
+CUST7316,Joshua Ng,6900,4,3,9400,4000,48,Yes,Known,No
+CUST7317,Anika Shah,7500,5,3,10000,4250,60,Yes,Known,No
+CUST7318,Samuel Koh,4500,2,3,7000,4500,36,Yes,Known,No
+CUST7319,Lina Lim,5100,3,3,7600,4750,48,Yes,Known,No
+CUST7320,Dev Patel,5700,4,3,8200,5000,60,Yes,Known,No
+CUST7321,Rachel Tan,6300,5,3,8800,4000,36,Yes,Known,No
+CUST7322,Imran Hassan,6900,2,3,9400,4250,48,Yes,Known,No
+CUST7323,Natalie Lee,7500,3,3,10000,4500,60,Yes,Known,No
+CUST7324,Kevin Yeo,4500,4,3,7000,4750,36,Yes,Known,No
+CUST7325,Sara Nair,5100,5,3,7600,5000,48,Yes,Known,No

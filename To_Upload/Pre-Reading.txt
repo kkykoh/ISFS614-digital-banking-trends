@@ -1,0 +1,22 @@
+Pre-Reading
+===========
+
+Agentic AI Fundamentals
+=======================
+https://www.ibm.com/think/topics/context-engineering
+https://www.ibm.com/think/topics/retrieval-augmented-generation
+https://www.ibm.com/think/topics/agentic-ai
+https://cloud.google.com/discover/what-is-model-context-protocol
+
+n8n Foundation
+==============
+https://www.hostinger.com/in/tutorials/?p=126360
+
+
+Industry Insights and Use Cases
+===============================
+Deloitte – Agentic AI in Banking: 
+https://www.deloitte.com/us/en/insights/industry/financial-services/agentic-ai-banking.html
+
+McKinsey – Agentic AI and Financial Crime:
+https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/how-agentic-ai-can-change-the-way-banks-fight-financial-crime

@@ -1,0 +1,26 @@
+Customer_ID,Customer_Name,Nationality,Occupation,Declared_Annual_Income,Declared_Source_of_Funds,Expected_Monthly_Transaction_Value,Expected_Monthly_Transaction_Count,Risk_Rating,Last_KYC_Review_Date,Address,Account_Purpose,KYC_Status,Account_Age_Months_KYC
+CUST6201,Nora Lim,Singapore,Professional,80000,Salary,6000,8,Low,2026-07-15,Singapore,Personal banking,Complete,30
+CUST6202,Jason Tan,Singapore,Professional,85000,Salary,6500,9,Low,2026-07-15,Singapore,Personal banking,Complete,31
+CUST6203,Aisha Khan,Singapore,Professional,90000,Salary,7000,10,Low,2026-07-15,Singapore,Personal banking,Complete,32
+CUST6204,Ravi Menon,Singapore,Professional,95000,Salary,7500,8,Low,2026-07-15,Singapore,Personal banking,Complete,33
+CUST6205,Sara Lee,Singapore,Professional,100000,Salary,8000,9,Low,2026-07-15,Singapore,Personal banking,Complete,34
+CUST6206,Ethan Goh,Singapore,Professional,72000,Salary,4500,6,Low,2026-01-10,Singapore,Personal banking,Complete,24
+CUST6207,Mei Chen,Singapore,Professional,73800,Salary,5000,7,Low,2026-02-10,Singapore,Personal banking,Complete,25
+CUST6208,Lucas Wong,Singapore,Professional,75600,Salary,5500,8,Low,2026-03-10,Singapore,Personal banking,Complete,26
+CUST6209,Priya Nair,Singapore,Professional,77400,Salary,6000,9,Low,2026-04-10,Singapore,Personal banking,Complete,27
+CUST6210,Daniel Ong,Singapore,Professional,79200,Salary,6500,6,Low,2026-05-10,Singapore,Personal banking,Complete,28
+CUST6211,Hannah Teo,Singapore,Professional,81000,Salary,4500,7,Low,2026-06-10,Singapore,Personal banking,Complete,29
+CUST6212,Marcus Chua,Singapore,Professional,82800,Salary,5000,8,Low,2026-07-10,Singapore,Personal banking,Complete,30
+CUST6213,Nur Aisyah,Singapore,Professional,84600,Salary,5500,9,Low,2026-08-10,Singapore,Personal banking,Complete,31
+CUST6214,Samuel Lee,Singapore,Professional,86400,Salary,6000,6,Low,2026-01-10,Singapore,Personal banking,Complete,32
+CUST6215,Irene Koh,Singapore,Professional,88200,Salary,6500,7,Low,2026-02-10,Singapore,Personal banking,Complete,33
+CUST6216,Adrian Tan,Singapore,Professional,90000,Salary,4500,8,Low,2026-03-10,Singapore,Personal banking,Complete,34
+CUST6217,Farah Aziz,Singapore,Professional,91800,Salary,5000,9,Low,2026-04-10,Singapore,Personal banking,Complete,35
+CUST6218,Jonathan Lim,Singapore,Professional,93600,Salary,5500,6,Low,2026-05-10,Singapore,Personal banking,Complete,36
+CUST6219,Kavita Rao,Singapore,Professional,95400,Salary,6000,7,Low,2026-06-10,Singapore,Personal banking,Complete,37
+CUST6220,Nicholas Yeo,Singapore,Professional,97200,Salary,6500,8,Low,2026-07-10,Singapore,Personal banking,Complete,38
+CUST6221,Rachel Ng,Singapore,Professional,99000,Salary,4500,9,Low,2026-08-10,Singapore,Personal banking,Complete,39
+CUST6222,Shawn Low,Singapore,Professional,100800,Salary,5000,6,Low,2026-01-10,Singapore,Personal banking,Complete,40
+CUST6223,Vanessa Ho,Singapore,Professional,102600,Salary,5500,7,Low,2026-02-10,Singapore,Personal banking,Complete,41
+CUST6224,Wei Jie,Singapore,Professional,104400,Salary,6000,8,Low,2026-03-10,Singapore,Personal banking,Complete,42
+CUST6225,Zara Malik,Singapore,Professional,106200,Salary,6500,9,Low,2026-04-10,Singapore,Personal banking,Complete,43

@@ -1,0 +1,1 @@
+{"Customer_ID":"CUST0001","Customer_Name":"Example Customer","Risk_Level":"HIGH","Triggered_Rules":["A3-R01"],"Supporting_Evidence":["Regulatory screening condition matched"],"Summary":"Customer matched at least one Agent-3 regulatory rule.","Recommended_Action":"ESCALATE"}

@@ -1,0 +1,26 @@
+Customer_ID,Customer_Name,Transfer_Amount,Transfer_Count_7D,Avg_Weekly_Transfer_Count,Total_Transfer_Value_7D,Avg_Weekly_Transfer_Value,Hours_Between_Incoming_Outgoing,Prior_Counterparty_History,Counterparty_Relationship,Round_Amount_Flag
+CUST6201,Nora Lim,6000,3,3,9000,5000,48,Yes,Known,No
+CUST6202,Jason Tan,6500,4,3,9500,5300,48,Yes,Known,No
+CUST6203,Aisha Khan,7000,3,3,10000,5600,48,Yes,Known,No
+CUST6204,Ravi Menon,7500,4,3,10500,5900,48,Yes,Known,No
+CUST6205,Sara Lee,8000,3,3,11000,6200,48,Yes,Known,No
+CUST6206,Ethan Goh,3500,2,3,5700,3800,48,Yes,Known,No
+CUST6207,Mei Chen,4150,3,3,6350,4050,48,Yes,Known,No
+CUST6208,Lucas Wong,4800,4,3,7000,4300,48,Yes,Known,No
+CUST6209,Priya Nair,5450,2,3,7650,4550,48,Yes,Known,No
+CUST6210,Daniel Ong,6100,3,3,8300,4800,48,Yes,Known,No
+CUST6211,Hannah Teo,3500,4,3,5700,3800,48,Yes,Known,No
+CUST6212,Marcus Chua,4150,2,3,6350,4050,48,Yes,Known,No
+CUST6213,Nur Aisyah,4800,3,3,7000,4300,48,Yes,Known,No
+CUST6214,Samuel Lee,5450,4,3,7650,4550,48,Yes,Known,No
+CUST6215,Irene Koh,6100,2,3,8300,4800,48,Yes,Known,No
+CUST6216,Adrian Tan,3500,3,3,5700,3800,48,Yes,Known,No
+CUST6217,Farah Aziz,4150,4,3,6350,4050,48,Yes,Known,No
+CUST6218,Jonathan Lim,4800,2,3,7000,4300,48,Yes,Known,No
+CUST6219,Kavita Rao,5450,3,3,7650,4550,48,Yes,Known,No
+CUST6220,Nicholas Yeo,6100,4,3,8300,4800,48,Yes,Known,No
+CUST6221,Rachel Ng,3500,2,3,5700,3800,48,Yes,Known,No
+CUST6222,Shawn Low,4150,3,3,6350,4050,48,Yes,Known,No
+CUST6223,Vanessa Ho,4800,4,3,7000,4300,48,Yes,Known,No
+CUST6224,Wei Jie,5450,2,3,7650,4550,48,Yes,Known,No
+CUST6225,Zara Malik,6100,3,3,8300,4800,48,Yes,Known,No

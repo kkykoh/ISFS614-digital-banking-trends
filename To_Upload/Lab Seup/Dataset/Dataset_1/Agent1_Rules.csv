@@ -1,0 +1,5 @@
+﻿Rule_ID,Rule_Name,Field,Operator,Value,Severity
+A1-R01,KYC Incomplete,KYC_Status,!=,Complete,HIGH
+A1-R02,High Transaction Value,Total_Monthly_Transaction_Value,>,20000,HIGH
+A1-R03,High Transaction Count,Current_Month_Transaction_Count,>,20,MEDIUM
+A1-R04,High Risk Customer,Risk_Rating,=,High,HIGH

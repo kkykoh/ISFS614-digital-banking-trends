@@ -1,0 +1,26 @@
+Customer_ID,Customer_Name,PEP_Flag,PEP_Relationship,Sanctions_Exact_Match,Sanctions_Partial_Match,Watchlist_Flag,Adverse_Media_Flag,Adverse_Media_Date,Regulatory_Enforcement_Flag,Match_DOB_Confirmed,Match_Nationality_Confirmed,Match_ID_Confirmed
+CUST7301,Chloe Tan,No,No,No,No,Yes,No,,No,No,No,No
+CUST7302,Ryan Lim,No,No,Yes,No,No,No,,No,Yes,Yes,Yes
+CUST7303,Aisha Noor,No,No,No,No,No,Yes,2026-08-15,No,No,No,No
+CUST7304,Vikram Nair,No,No,No,No,No,Yes,2026-08-15,No,No,No,No
+CUST7305,Hana Lee,No,No,No,No,No,No,,No,No,No,No
+CUST7306,Ethan Goh,No,No,No,No,No,No,,No,No,No,No
+CUST7307,Mei Chen,No,No,No,No,No,No,,No,No,No,No
+CUST7308,Arjun Kumar,No,No,No,No,No,No,,No,No,No,No
+CUST7309,Sofia Rahman,No,No,No,No,No,No,,No,No,No,No
+CUST7310,Marcus Teo,No,No,No,No,No,No,,No,No,No,No
+CUST7311,Nadia Wong,No,No,No,No,No,No,,No,No,No,No
+CUST7312,Darren Chua,No,No,No,No,No,No,,No,No,No,No
+CUST7313,Priya Menon,No,No,No,No,No,No,,No,No,No,No
+CUST7314,Lucas Ong,No,No,No,No,No,No,,No,No,No,No
+CUST7315,Farah Aziz,No,No,No,No,No,No,,No,No,No,No
+CUST7316,Joshua Ng,No,No,No,No,No,No,,No,No,No,No
+CUST7317,Anika Shah,No,No,No,No,No,No,,No,No,No,No
+CUST7318,Samuel Koh,No,No,No,No,No,No,,No,No,No,No
+CUST7319,Lina Lim,No,No,No,No,No,No,,No,No,No,No
+CUST7320,Dev Patel,No,No,No,No,No,No,,No,No,No,No
+CUST7321,Rachel Tan,No,No,No,No,No,No,,No,No,No,No
+CUST7322,Imran Hassan,No,No,No,No,No,No,,No,No,No,No
+CUST7323,Natalie Lee,No,No,No,No,No,No,,No,No,No,No
+CUST7324,Kevin Yeo,No,No,No,No,No,No,,No,No,No,No
+CUST7325,Sara Nair,No,No,No,No,No,No,,No,No,No,No

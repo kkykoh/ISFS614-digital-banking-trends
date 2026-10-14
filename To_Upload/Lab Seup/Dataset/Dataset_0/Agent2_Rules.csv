@@ -1,0 +1,6 @@
+﻿Rule_ID,Rule_Name,Field,Operator,Value,Severity
+A2-R01,High Transfer Amount,Transfer_Amount,>,15000,HIGH
+A2-R02,High Transfer Frequency,Transfer_Count_7D,>,8,MEDIUM
+A2-R03,Frequent Cash Deposits Below 10000,Deposits_Below_10000_Count_7D,>=,4,HIGH
+A2-R04,High Monthly Cash Deposit,Cash_Deposit_Total_Month,>,10000,MEDIUM
+A2-R05,High Outward Remittance,Remittance_Amount,>,10000,HIGH

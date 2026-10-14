@@ -1,0 +1,7 @@
+Customer transaction record:
+{{ JSON.stringify($json) }}
+
+Agent-2 rules:
+{{ JSON.stringify($('Extract Agent Rules2').all().map(item => item.json)) }}
+
+Evaluate this customer against every supplied Agent-2 rule.
