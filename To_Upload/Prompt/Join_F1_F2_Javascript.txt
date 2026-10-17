@@ -1,0 +1,29 @@
+// Read all rows from F1 and F2
+const f1 = $('Extract F1 - Customer Profile').all();
+const f2 = $('Extract F2 - Transaction Report').all();
+
+// Build a lookup map from F1 using normalized Customer_ID
+const f1Map = new Map(
+  f1.map(item => [
+    String(item.json.Customer_ID ?? '').trim().toUpperCase(),
+    item.json
+  ])
+);
+
+// INNER JOIN F2 to F1 by Customer_ID
+return f2
+  .map(item => {
+    const id = String(item.json.Customer_ID ?? '').trim().toUpperCase();
+    const profile = f1Map.get(id);
+
+    if (!profile) return null;
+
+    return {
+      json: {
+        ...profile,
+        ...item.json,
+        Customer_ID: id
+      }
+    };
+  })
+  .filter(Boolean);

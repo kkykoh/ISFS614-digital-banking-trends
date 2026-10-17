@@ -1,0 +1,6 @@
+﻿Customer_ID,Customer_Name,Monthly_Money_Movement,Total_Monthly_Transaction_Value,Average_Monthly_Balance,Current_Month_Transaction_Count,Avg_3M_Transaction_Count,Current_Month_Total_Credits,Current_Month_Total_Debits,Avg_3M_Credit_Value,Avg_3M_Debit_Value,Days_Dormant_Before_Current_Activity,Current_Month_High_Value_Incoming,Current_Month_High_Value_Outgoing,Card_Transaction_Count,Card_Transaction_Value,Customer_Explanation,Payment_Purpose
+CUST6201,Nora Lim,10000,10000,15000,10,9,5500,4500,5200,4300,0,0,0,6,1400,Normal monthly activity,Personal
+CUST6202,Jason Tan,10700,10700,15500,11,10,5900,4800,5500,4550,0,0,0,7,1550,Normal monthly activity,Personal
+CUST6203,Aisha Khan,11400,11400,16000,12,9,6300,5100,5800,4800,0,0,0,8,1700,Normal monthly activity,Personal
+CUST6204,Ravi Menon,12100,12100,16500,13,10,6700,5400,6100,5050,0,0,0,6,1850,Normal monthly activity,Personal
+CUST6205,Sara Lee,12800,12800,17000,14,9,7100,5700,6400,5300,0,0,0,7,2000,Normal monthly activity,Personal

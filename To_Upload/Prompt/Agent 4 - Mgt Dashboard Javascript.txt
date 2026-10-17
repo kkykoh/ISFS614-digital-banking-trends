@@ -1,0 +1,298 @@
+// Read Agent-4 output.
+const source=$input.first().json;
+const payload=source.output??source;
+const dashboard=payload.Dashboard??{};
+const r4=Array.isArray(payload.R4)?payload.R4:[];
+
+// Helpers.
+const toNum=(v)=>{const n=Number(v);return Number.isFinite(n)?n:0;};
+const esc=(v)=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const normalizeRisk=(v)=>String(v??'').trim().toUpperCase();
+const normalizeAction=(v)=>String(v??'').trim().toUpperCase().replace(/[\s-]+/g,'_');
+const pct=(count,total)=>total>0?(count/total)*100:0;
+const fmtPct=(v)=>`${Math.round(Number(v))}%`;
+const riskRank={HIGH:3,MEDIUM:2,LOW:1};
+
+// Calculate ALL portfolio metrics from the complete R4 array.
+// LOW-risk customers remain part of these calculations.
+const totalCustomers=r4.length;
+const highRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='HIGH').length;
+const mediumRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='MEDIUM').length;
+const lowRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='LOW').length;
+
+const escalateCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='ESCALATE').length;
+const manualReviewCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='MANUAL_REVIEW').length;
+const approveCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='APPROVE').length;
+
+const highRiskPct=pct(highRiskCount,totalCustomers);
+const mediumRiskPct=pct(mediumRiskCount,totalCustomers);
+const lowRiskPct=pct(lowRiskCount,totalCustomers);
+const escalatePct=pct(escalateCount,totalCustomers);
+const manualReviewPct=pct(manualReviewCount,totalCustomers);
+const approvePct=pct(approveCount,totalCustomers);
+
+// Qualitative Agent-4 content.
+const executiveSummary=dashboard.Executive_Summary??'Portfolio risk assessment completed from consolidated specialist assessments.';
+let redFlags=Array.isArray(dashboard.Top_Red_Flags)?dashboard.Top_Red_Flags.filter(Boolean):[];
+let recommendations=Array.isArray(dashboard.Key_Recommendations)?dashboard.Key_Recommendations.filter(Boolean):[];
+
+// Fallback red flags.
+if(redFlags.length===0){
+  const flags=[];
+  for(const customer of r4){
+    if(Array.isArray(customer.Main_Red_Flags))flags.push(...customer.Main_Red_Flags);
+  }
+  redFlags=[...new Set(flags.filter(Boolean))];
+}
+
+// Fallback recommendations.
+if(recommendations.length===0){
+  recommendations=[
+    'Prioritize HIGH-risk customers for immediate escalation.',
+    'Complete manual reviews for MEDIUM-risk customers.',
+    'Maintain standard monitoring for LOW-risk customers.'
+  ];
+}
+
+// Management table:
+// Show ONLY HIGH and MEDIUM customers.
+// R4 itself is NOT changed.
+const priorityCustomers=[...r4]
+  .filter(customer=>{
+    const risk=normalizeRisk(customer.Overall_Risk_Level);
+    return risk==='HIGH'||risk==='MEDIUM';
+  })
+  .sort((a,b)=>{
+    const aRank=riskRank[normalizeRisk(a.Overall_Risk_Level)]??0;
+    const bRank=riskRank[normalizeRisk(b.Overall_Risk_Level)]??0;
+    if(bRank!==aRank)return bRank-aRank;
+    return toNum(b.Overall_Risk_Score)-toNum(a.Overall_Risk_Score);
+  })
+  .slice(0,5);
+
+// Text wrapping.
+const wrapText=(text,maxCharacters=125,maxLines=3)=>{
+  const words=String(text??'').split(/\s+/).filter(Boolean);
+  const lines=[];
+  let line='';
+  for(const word of words){
+    const candidate=line?`${line} ${word}`:word;
+    if(candidate.length>maxCharacters&&line){
+      lines.push(line);
+      line=word;
+      if(lines.length>=maxLines-1)break;
+    }else{
+      line=candidate;
+    }
+  }
+  if(line&&lines.length<maxLines)lines.push(line);
+  return lines;
+};
+
+// Donut chart.
+const donut=(cx,cy,radius,percent,color,title,subtitle)=>{
+  const safePercent=Math.max(0,Math.min(100,percent));
+  const circumference=2*Math.PI*radius;
+  const filled=circumference*safePercent/100;
+  const remaining=circumference-filled;
+  return `<text x='${cx}' y='${cy-radius-22}' text-anchor='middle' class='chart-title'>${esc(title)}</text><circle cx='${cx}' cy='${cy}' r='${radius}' fill='none' stroke='#E5E7EB' stroke-width='18'/><circle cx='${cx}' cy='${cy}' r='${radius}' fill='none' stroke='${color}' stroke-width='18' stroke-linecap='round' stroke-dasharray='${filled} ${remaining}' transform='rotate(-90 ${cx} ${cy})'/><text x='${cx}' y='${cy+11}' text-anchor='middle' class='donut-value'>${fmtPct(safePercent)}</text><text x='${cx}' y='${cy+radius+28}' text-anchor='middle' class='chart-subtitle'>${esc(subtitle)}</text>`;
+};
+
+// Bullet list.
+const bulletList=(items,x,firstY,lineHeight,dotColor,maxItems=3,maxChars=68)=>items.slice(0,maxItems).map((item,index)=>{
+  const y=firstY+index*lineHeight;
+  return `<circle cx='${x}' cy='${y-4}' r='5' fill='${dotColor}'/><text x='${x+16}' y='${y}' class='bullet-text'>${esc(String(item).slice(0,maxChars))}</text>`;
+}).join('');
+
+// Palette.
+const NAVY='#243C78';
+const HIGH='#D62828';
+const MEDIUM='#D88B00';
+const LOW='#53A83F';
+const PAGE='#F4F6F9';
+const PANEL='#FFFFFF';
+const PANEL_HEADER='#E1E4E8';
+const BORDER='#CDD3DB';
+const PRIMARY_TEXT='#152238';
+
+// Executive summary.
+const summaryLines=wrapText(executiveSummary,125,3);
+const summarySvg=summaryLines.map((line,index)=>`<text x='60' y='${292+index*24}' class='summary-text'>${esc(line)}</text>`).join('');
+
+// Customer rows.
+// Column header ends at y=726.
+// First customer row begins at y=728.
+const tableRows=priorityCustomers.map((customer,index)=>{
+  const rowTop=728+index*24;
+  const textY=rowTop+16;
+  const risk=normalizeRisk(customer.Overall_Risk_Level);
+  const action=normalizeAction(customer.Recommended_Action);
+  const riskColor=risk==='HIGH'?HIGH:MEDIUM;
+  const actionColor=action==='ESCALATE'?HIGH:MEDIUM;
+  const customerLabel=`${customer.Customer_ID??''}${customer.Customer_Name?` - ${customer.Customer_Name}`:''}`;
+  return `<rect x='838' y='${rowTop}' width='704' height='24' fill='${index%2===0?'#FFFFFF':'#F7F9FC'}'/><line x1='838' y1='${rowTop+24}' x2='1542' y2='${rowTop+24}' stroke='#E4E7EB'/><text x='852' y='${textY}' class='table-row'>${esc(customerLabel.slice(0,34))}</text><text x='1110' y='${textY}' class='table-risk' fill='${riskColor}'>${esc(risk)}</text><text x='1245' y='${textY}' class='table-row'>${esc(customer.Overall_Risk_Score??'')}</text><text x='1350' y='${textY}' class='table-action' fill='${actionColor}'>${esc(String(customer.Recommended_Action??'').replace(/_/g,' '))}</text>`;
+}).join('');
+
+// Portfolio distribution widths.
+const mixWidth=600;
+const highWidth=mixWidth*highRiskPct/100;
+const mediumWidth=mixWidth*mediumRiskPct/100;
+const lowWidth=mixWidth*lowRiskPct/100;
+
+// Final SVG.
+const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid meet' style='width:100%;height:auto;max-width:100vw;display:block;background:${PAGE}'>
+
+<style>
+text{font-family:Arial,Helvetica,sans-serif}
+.header-title{font-size:32px;font-weight:700}
+.header-subtitle{font-size:15px;font-weight:400}
+.header-legend{font-size:14px;font-weight:700}
+.kpi-label{font-size:14px;font-weight:700}
+.kpi-value{font-size:36px;font-weight:700}
+.kpi-percentage{font-size:17px;font-weight:700}
+.summary-heading{font-size:16px;font-weight:700}
+.summary-text{font-size:16px;font-weight:400;fill:#334155}
+.section-title{font-size:17px;font-weight:700}
+.chart-title{font-size:17px;font-weight:700;fill:#152238}
+.donut-value{font-size:34px;font-weight:700;fill:#111827}
+.chart-subtitle{font-size:13px;font-weight:500;fill:#5D6B82}
+.portfolio-title{font-size:14px;font-weight:700}
+.legend-text{font-size:14px;font-weight:500;fill:#334155}
+.bullet-heading{font-size:14px;font-weight:700}
+.bullet-text{font-size:13px;font-weight:400;fill:#334155}
+.table-header{font-size:13px;font-weight:700;fill:#FFFFFF}
+.table-row{font-size:11.5px;font-weight:400;fill:#111827}
+.table-risk{font-size:11.5px;font-weight:700}
+.table-action{font-size:11px;font-weight:700}
+.recommendation-title{font-size:12px;font-weight:700}
+.recommendation-text{font-size:11.5px;font-weight:400;fill:#334155}
+</style>
+
+<rect x='0' y='0' width='1600' height='900' fill='${PAGE}'/>
+
+<!-- HEADER -->
+<rect x='18' y='16' width='1564' height='94' rx='16' fill='${NAVY}'/>
+<text x='50' y='56' class='header-title' fill='#FFFFFF'>Management Risk Dashboard</text>
+<text x='50' y='86' class='header-subtitle' fill='#E2E8F0'>Agentic AI Risk &amp; Compliance Decision Dashboard</text>
+
+<circle cx='1305' cy='49' r='9' fill='${HIGH}'/>
+<text x='1324' y='55' class='header-legend' fill='#FFFFFF'>HIGH</text>
+<circle cx='1405' cy='49' r='9' fill='${MEDIUM}'/>
+<text x='1424' y='55' class='header-legend' fill='#FFFFFF'>MEDIUM</text>
+<circle cx='1522' cy='49' r='9' fill='${LOW}'/>
+<text x='1541' y='55' class='header-legend' fill='#FFFFFF'>LOW</text>
+
+<!-- KPI CARDS -->
+<rect x='30' y='128' width='365' height='94' rx='14' fill='#E6E8EC'/>
+<text x='52' y='158' class='kpi-label' fill='#475569'>TOTAL CUSTOMERS</text>
+<text x='52' y='205' class='kpi-value' fill='#111827'>${totalCustomers}</text>
+
+<rect x='430' y='128' width='365' height='94' rx='14' fill='#FCE7E7'/>
+<text x='452' y='158' class='kpi-label' fill='#991B1B'>HIGH RISK</text>
+<text x='452' y='205' class='kpi-value' fill='#991B1B'>${highRiskCount}</text>
+<text x='520' y='202' class='kpi-percentage' fill='#991B1B'>${fmtPct(highRiskPct)}</text>
+
+<rect x='830' y='128' width='365' height='94' rx='14' fill='#FFF2BD'/>
+<text x='852' y='158' class='kpi-label' fill='#92400E'>MEDIUM RISK</text>
+<text x='852' y='205' class='kpi-value' fill='#92400E'>${mediumRiskCount}</text>
+<text x='920' y='202' class='kpi-percentage' fill='#92400E'>${fmtPct(mediumRiskPct)}</text>
+
+<rect x='1230' y='128' width='340' height='94' rx='14' fill='#DAF2DB'/>
+<text x='1252' y='158' class='kpi-label' fill='#166534'>LOW RISK</text>
+<text x='1252' y='205' class='kpi-value' fill='#166534'>${lowRiskCount}</text>
+<text x='1320' y='202' class='kpi-percentage' fill='#166534'>${fmtPct(lowRiskPct)}</text>
+
+<!-- EXECUTIVE SUMMARY -->
+<rect x='30' y='240' width='1540' height='108' rx='12' fill='#FFFFFF' stroke='${BORDER}'/>
+<rect x='30' y='240' width='6' height='108' rx='3' fill='#3B82F6'/>
+<text x='58' y='270' class='summary-heading' fill='#243C78'>EXECUTIVE SUMMARY</text>
+${summarySvg}
+
+<!-- RISK POSTURE -->
+<rect x='30' y='368' width='755' height='250' fill='${PANEL}' stroke='${BORDER}'/>
+<rect x='30' y='368' width='755' height='42' fill='${PANEL_HEADER}'/>
+<text x='52' y='395' class='section-title' fill='${PRIMARY_TEXT}'>COMPANY COMPLIANCE AND RISK POSTURE</text>
+
+${donut(180,510,60,highRiskPct,HIGH,'Overall Portfolio Risk','HIGH-risk portfolio share')}
+${donut(410,510,60,mediumRiskPct,MEDIUM,'Medium-risk Share','Customers requiring review')}
+${donut(640,510,60,lowRiskPct,LOW,'Low-risk Share','Customers under monitoring')}
+
+<!-- MANAGEMENT ACTIONS -->
+<rect x='815' y='368' width='755' height='250' fill='${PANEL}' stroke='${BORDER}'/>
+<rect x='815' y='368' width='755' height='42' fill='${PANEL_HEADER}'/>
+<text x='837' y='395' class='section-title' fill='${PRIMARY_TEXT}'>MANAGEMENT ACTIONS</text>
+
+${donut(955,510,60,escalatePct,HIGH,'ESCALATE',`${escalateCount} customer${escalateCount===1?'':'s'}`)}
+${donut(1190,510,60,manualReviewPct,MEDIUM,'MANUAL REVIEW',`${manualReviewCount} customer${manualReviewCount===1?'':'s'}`)}
+${donut(1425,510,60,approvePct,LOW,'APPROVE / MONITOR',`${approveCount} customer${approveCount===1?'':'s'}`)}
+
+<!-- RISK DISTRIBUTION -->
+<rect x='30' y='636' width='755' height='214' fill='${PANEL}' stroke='${BORDER}'/>
+<rect x='30' y='636' width='755' height='42' fill='${PANEL_HEADER}'/>
+<text x='52' y='663' class='section-title' fill='${PRIMARY_TEXT}'>RISK DISTRIBUTION &amp; KEY FLAGS</text>
+
+<text x='58' y='704' class='portfolio-title' fill='#374151'>Portfolio Mix</text>
+
+<rect x='58' y='718' width='600' height='30' rx='8' fill='#E5E7EB'/>
+<rect x='58' y='718' width='${highWidth}' height='30' rx='8' fill='${HIGH}'/>
+<rect x='${58+highWidth}' y='718' width='${mediumWidth}' height='30' fill='${MEDIUM}'/>
+<rect x='${58+highWidth+mediumWidth}' y='718' width='${lowWidth}' height='30' rx='8' fill='${LOW}'/>
+
+<circle cx='70' cy='779' r='8' fill='${HIGH}'/>
+<text x='90' y='785' class='legend-text'>HIGH ${highRiskCount} / ${fmtPct(highRiskPct)}</text>
+
+<circle cx='285' cy='779' r='8' fill='${MEDIUM}'/>
+<text x='305' y='785' class='legend-text'>MEDIUM ${mediumRiskCount} / ${fmtPct(mediumRiskPct)}</text>
+
+<circle cx='535' cy='779' r='8' fill='${LOW}'/>
+<text x='555' y='785' class='legend-text'>LOW ${lowRiskCount} / ${fmtPct(lowRiskPct)}</text>
+
+<text x='58' y='815' class='bullet-heading' fill='#9A3412'>Top Red Flags</text>
+${bulletList(redFlags,70,834,14,HIGH,3,67)}
+
+<!-- HIGH + MEDIUM CUSTOMER TABLE -->
+<rect x='815' y='636' width='755' height='214' fill='${PANEL}' stroke='${BORDER}'/>
+<rect x='815' y='636' width='755' height='42' fill='${PANEL_HEADER}'/>
+<text x='837' y='663' class='section-title' fill='${PRIMARY_TEXT}'>HIGH &amp; MEDIUM RISK CUSTOMERS</text>
+
+<rect x='838' y='690' width='704' height='36' rx='4' fill='#4B5563'/>
+
+<text x='852' y='714' class='table-header'>Customer</text>
+<text x='1110' y='714' class='table-header'>Overall Risk</text>
+<text x='1245' y='714' class='table-header'>Score</text>
+<text x='1350' y='714' class='table-header'>Action</text>
+
+${tableRows}
+
+<!-- MANAGEMENT RECOMMENDATIONS -->
+<rect x='30' y='860' width='1540' height='32' rx='7' fill='#EDF4FF' stroke='#BFDBFE'/>
+
+<text x='48' y='881' class='recommendation-title' fill='#1D4ED8'>MANAGEMENT RECOMMENDATIONS:</text>
+
+<text x='272' y='881' class='recommendation-text'>${esc(String(recommendations[0]??'').slice(0,58))}</text>
+<text x='730' y='881' class='recommendation-text'>${esc(String(recommendations[1]??'').slice(0,58))}</text>
+<text x='1180' y='881' class='recommendation-text'>${esc(String(recommendations[2]??'').slice(0,47))}</text>
+
+</svg>`.trim();
+
+// Return deterministic dashboard output.
+return [{
+  json:{
+    Management_Report_SVG:svg,
+    Calculated_Metrics:{
+      Total_Customers:totalCustomers,
+      High_Risk_Count:highRiskCount,
+      High_Risk_Percentage:Number(highRiskPct.toFixed(1)),
+      Medium_Risk_Count:mediumRiskCount,
+      Medium_Risk_Percentage:Number(mediumRiskPct.toFixed(1)),
+      Low_Risk_Count:lowRiskCount,
+      Low_Risk_Percentage:Number(lowRiskPct.toFixed(1)),
+      Escalate_Count:escalateCount,
+      Escalate_Percentage:Number(escalatePct.toFixed(1)),
+      Manual_Review_Count:manualReviewCount,
+      Manual_Review_Percentage:Number(manualReviewPct.toFixed(1)),
+      Approve_Count:approveCount,
+      Approve_Percentage:Number(approvePct.toFixed(1))
+    }
+  }
+}];

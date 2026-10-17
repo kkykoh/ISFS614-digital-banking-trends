@@ -1,0 +1,6 @@
+﻿Customer_ID,Customer_Name,Transfer_Amount,Transfer_Count_7D,Avg_Weekly_Transfer_Count,Total_Transfer_Value_7D,Avg_Weekly_Transfer_Value,Hours_Between_Incoming_Outgoing,Prior_Counterparty_History,Counterparty_Relationship,Round_Amount_Flag
+CUST6201,Nora Lim,6000,3,3,9000,5000,48,Yes,Known,No
+CUST6202,Jason Tan,6500,4,3,9500,5300,48,Yes,Known,No
+CUST6203,Aisha Khan,7000,3,3,10000,5600,48,Yes,Known,No
+CUST6204,Ravi Menon,7500,4,3,10500,5900,48,Yes,Known,No
+CUST6205,Sara Lee,8000,3,3,11000,6200,48,Yes,Known,No

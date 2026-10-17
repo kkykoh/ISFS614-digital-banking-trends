@@ -1,0 +1,6 @@
+﻿Customer_ID,Customer_Name,Nationality,Occupation,Declared_Annual_Income,Declared_Source_of_Funds,Expected_Monthly_Transaction_Value,Expected_Monthly_Transaction_Count,Risk_Rating,Last_KYC_Review_Date,Address,Account_Purpose,KYC_Status,Account_Age_Months_KYC
+CUST6201,Nora Lim,Singapore,Professional,80000,Salary,6000,8,Low,2026-07-15,Singapore,Personal banking,Complete,30
+CUST6202,Jason Tan,Singapore,Professional,85000,Salary,6500,9,Low,2026-07-15,Singapore,Personal banking,Complete,31
+CUST6203,Aisha Khan,Singapore,Professional,90000,Salary,7000,10,Low,2026-07-15,Singapore,Personal banking,Complete,32
+CUST6204,Ravi Menon,Singapore,Professional,95000,Salary,7500,8,Low,2026-07-15,Singapore,Personal banking,Complete,33
+CUST6205,Sara Lee,Singapore,Professional,100000,Salary,8000,9,Low,2026-07-15,Singapore,Personal banking,Complete,34

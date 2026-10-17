@@ -1,0 +1,7 @@
+Regulatory screening record:
+{{ JSON.stringify($json) }}
+
+Agent-3 rules:
+{{ JSON.stringify($('Extract Agent Rules3').all().map(item => item.json)) }}
+
+Evaluate this record against every supplied Agent-3 rule.

@@ -1,0 +1,6 @@
+﻿Customer_ID,Customer_Name,PEP_Flag,PEP_Relationship,Sanctions_Exact_Match,Sanctions_Partial_Match,Watchlist_Flag,Adverse_Media_Flag,Adverse_Media_Date,Regulatory_Enforcement_Flag,Match_DOB_Confirmed,Match_Nationality_Confirmed,Match_ID_Confirmed
+CUST6201,Nora Lim,Yes,No,No,No,No,No,,No,No,No,No
+CUST6202,Jason Tan,No,No,Yes,No,No,No,,No,Yes,Yes,Yes
+CUST6203,Aisha Khan,No,No,No,No,Yes,No,,No,No,No,No
+CUST6204,Ravi Menon,No,No,No,No,No,No,,Yes,No,No,No
+CUST6205,Sara Lee,No,No,No,No,No,Yes,2026-07-01,No,No,No,No

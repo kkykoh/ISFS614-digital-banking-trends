@@ -1,0 +1,26 @@
+Customer_ID,Customer_Name,Nationality,Occupation,Declared_Annual_Income,Declared_Source_of_Funds,Expected_Monthly_Transaction_Value,Expected_Monthly_Transaction_Count,Risk_Rating,Last_KYC_Review_Date,Address,Account_Purpose,KYC_Status,Account_Age_Months_KYC
+CUST7301,Chloe Tan,Singapore,Professional,80000,Salary,6000,8,Low,2026-08-01,Singapore,Personal banking,Complete,30
+CUST7302,Ryan Lim,Singapore,Professional,85000,Salary,6400,9,Low,2026-08-01,Singapore,Personal banking,Complete,31
+CUST7303,Aisha Noor,Singapore,Professional,90000,Salary,6800,10,Low,2026-08-01,Singapore,Personal banking,Complete,32
+CUST7304,Vikram Nair,Singapore,Professional,95000,Salary,7200,8,Low,2026-08-01,Singapore,Personal banking,Complete,33
+CUST7305,Hana Lee,Singapore,Professional,100000,Salary,7600,9,Low,2026-08-01,Singapore,Personal banking,Complete,34
+CUST7306,Ethan Goh,Singapore,Engineer,70000,Salary,4800,6,Low,2026-01-15,Singapore,Personal banking,Complete,18
+CUST7307,Mei Chen,Singapore,Analyst,75000,Salary,5150,7,Low,2026-02-15,Singapore,Personal banking,Complete,19
+CUST7308,Arjun Kumar,Singapore,Consultant,80000,Salary,5500,8,Low,2026-03-15,Singapore,Personal banking,Complete,20
+CUST7309,Sofia Rahman,Singapore,Teacher,85000,Salary,5850,9,Low,2026-04-15,Singapore,Personal banking,Complete,21
+CUST7310,Marcus Teo,Singapore,Manager,90000,Salary,6200,6,Low,2026-05-15,Singapore,Personal banking,Complete,22
+CUST7311,Nadia Wong,Singapore,Accountant,95000,Salary,6550,7,Low,2026-06-15,Singapore,Personal banking,Complete,23
+CUST7312,Darren Chua,Singapore,Developer,100000,Salary,4800,8,Low,2026-07-15,Singapore,Personal banking,Complete,24
+CUST7313,Priya Menon,Singapore,Pharmacist,105000,Salary,5150,9,Low,2026-08-15,Singapore,Personal banking,Complete,25
+CUST7314,Lucas Ong,Singapore,Architect,70000,Salary,5500,6,Low,2026-01-15,Singapore,Personal banking,Complete,26
+CUST7315,Farah Aziz,Singapore,Designer,75000,Salary,5850,7,Low,2026-02-15,Singapore,Personal banking,Complete,27
+CUST7316,Joshua Ng,Singapore,Operations Executive,80000,Salary,6200,8,Low,2026-03-15,Singapore,Personal banking,Complete,28
+CUST7317,Anika Shah,Singapore,Researcher,85000,Salary,6550,9,Low,2026-04-15,Singapore,Personal banking,Complete,29
+CUST7318,Samuel Koh,Singapore,Project Manager,90000,Salary,4800,6,Low,2026-05-15,Singapore,Personal banking,Complete,30
+CUST7319,Lina Lim,Singapore,Marketing Executive,95000,Salary,5150,7,Low,2026-06-15,Singapore,Personal banking,Complete,31
+CUST7320,Dev Patel,Singapore,Finance Executive,100000,Salary,5500,8,Low,2026-07-15,Singapore,Personal banking,Complete,32
+CUST7321,Rachel Tan,Singapore,HR Executive,105000,Salary,5850,9,Low,2026-08-15,Singapore,Personal banking,Complete,33
+CUST7322,Imran Hassan,Singapore,Business Analyst,70000,Salary,6200,6,Low,2026-01-15,Singapore,Personal banking,Complete,34
+CUST7323,Natalie Lee,Singapore,Engineer,75000,Salary,6550,7,Low,2026-02-15,Singapore,Personal banking,Complete,35
+CUST7324,Kevin Yeo,Singapore,Sales Executive,80000,Salary,4800,8,Low,2026-03-15,Singapore,Personal banking,Complete,36
+CUST7325,Sara Nair,Singapore,Consultant,85000,Salary,5150,9,Low,2026-04-15,Singapore,Personal banking,Complete,37

@@ -1,0 +1,113 @@
+
+CURRENT SPECIALIST REPORTS:
+
+{{ JSON.stringify($json.reports) }}
+
+Use ONLY the customer records in CURRENT SPECIALIST REPORTS.
+
+Do not use any customer IDs, names, counts, risks, findings, examples, or dashboard values from previous executions or parser examples.
+
+Generate exactly one R4 record for each unique Customer_ID present in the current specialist reports.
+
+CURRENT SPECIALIST REPORTS FROM THIS EXECUTION:
+
+{{ JSON.stringify($json.reports) }}
+
+IMPORTANT:
+Use ONLY the customer records contained in CURRENT SPECIALIST REPORTS above.
+Do not use customers, names, IDs, counts, findings, examples, or results from any previous execution.
+Do not invent customers.
+Generate exactly one R4 record per unique Customer_ID found in the current reports.
+
+Also generate Management_Report_Image_Prompt.
+
+Management_Report_Image_Prompt must describe a professional executive banking risk dashboard image using the completed Dashboard and R4 results.
+
+The image must include:
+- title: Management Risk Dashboard
+- executive summary
+- Total Customers KPI
+- HIGH / MEDIUM / LOW counts and percentages
+- risk distribution chart
+- management action distribution
+- top red flags
+- management recommendations
+- priority HIGH and MEDIUM risk customers
+- dark navy corporate header
+- red / amber / green risk colors
+- modern professional banking-management style
+
+Use only the actual Dashboard and R4 values.
+Do not invent values.
+
+
+Also generate Management_Report_SVG.
+
+Management_Report_SVG must be a complete professional one-page executive management dashboard in SVG format.
+
+Use the completed Dashboard and R4 results only.
+
+The SVG management report must contain:
+
+- dark navy executive header
+- title: Management Risk Dashboard
+- subtitle: Agentic AI Customer Risk Assessment
+- HIGH / MEDIUM / LOW legend
+- executive summary panel
+- KPI cards for:
+  - Total Customers
+  - High Risk count and percentage
+  - Medium Risk count and percentage
+  - Low Risk count and percentage
+- colorful risk distribution chart
+- management action bars for:
+  - ESCALATE
+  - MANUAL REVIEW
+  - APPROVE
+- Top Red Flags panel
+- Management Recommendations panel
+- Priority Customers table showing HIGH and MEDIUM customers
+- R1, R2, R3, Overall Risk, Risk Score and Recommended Action
+- professional management footer
+
+Risk colors:
+HIGH = red
+MEDIUM = amber/orange
+LOW = green
+Neutral = dark navy / blue / grey
+
+The SVG must be:
+- visually professional
+- suitable for senior banking management
+- one-page landscape dashboard
+- approximately 1600 x 900 pixels
+- completely self-contained
+- valid SVG
+- based only on actual Dashboard and R4 values
+
+Do not invent any statistics, customers, findings or recommendations.
+
+Return Management_Report_SVG as a valid SVG string beginning with:
+
+<svg
+
+and ending with:
+
+</svg>
+
+Return exactly these three top-level fields:
+
+Dashboard
+R4
+Management_Report_SVG
+
+Generate Management_Report_SVG as a compact one-line SVG string.
+
+Use single quotes for all SVG attributes.
+Do not use double quotes inside the SVG.
+Do not return markdown or code fences.
+
+Return exactly:
+Dashboard
+R4
+Management_Report_SVG

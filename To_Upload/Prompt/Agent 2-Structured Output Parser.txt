@@ -1,0 +1,1 @@
+{"Customer_ID":"CUST0001","Customer_Name":"Example Customer","Risk_Level":"HIGH","Triggered_Rules":["A1-R02"],"Supporting_Evidence":["Total_Monthly_Transaction_Value exceeded the rule threshold"],"Summary":"Customer matched at least one Agent-1 rule.","Recommended_Action":"MANUAL_REVIEW"}
