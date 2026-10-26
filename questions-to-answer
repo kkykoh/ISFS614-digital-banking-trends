@@ -1,0 +1,165 @@
+1. Adding a New KYC Agent
+The bank wants to introduce Agent-5 – Enhanced KYC Verification. Where should this new agent be added?
+*
+A. After the Management Dashboard
+B. As another specialist agent whose result is sent to Agent-4
+C. Inside Agent-2
+D. After the final consolidated report is generated
+Briefly explain your answer.
+*
+
+2. Adding a New Risk Check
+The bank introduces the rule: Identity_Document_Expired = Yes → HIGH. Where should this rule ideally be stored?
+*
+A. User Prompt
+B. System Message
+C. Rules CSV
+D. Management Dashboard
+Briefly explain your answer.
+*
+
+3. Purpose of the System Message
+Which instruction is most appropriate for a System Message?
+*
+A. Customer_ID = C001
+B. Transfer_Amount = 18000
+C. You are a transaction-risk specialist. Use only supplied data and rules.
+D. A2-R01, Transfer_Amount > 15000, HIGH
+Briefly explain your answer.
+*
+
+4. Why Use a Structured Output Parser?
+Why does the workflow use a Structured Output Parser with the AI Agents?
+*
+A. To make the AI more creative
+B. To make the AI response follow a consistent structure
+C. To upload CSV files
+D. To replace the LLM
+Briefly explain your answer.
+*
+
+5. Hallucination
+The screening data says Sanctions_Exact_Match = No, but Agent-3 reports that the customer is an exact sanctions match. What has most likely happened?
+*
+A. Tokenization
+B. Orchestration
+C. Hallucination
+D. Human-in-the-Loop
+Briefly explain your answer.
+*
+
+6. Guardrails
+Which instruction is an example of an AI guardrail?
+*
+A. Be creative when assessing customers.
+B. Use only supplied customer data and supplied rules. Do not invent information.
+C. Generate any risk level you believe is suitable.
+D. Ignore missing data.
+Briefly explain your answer.
+*
+
+7. Human-in-the-Loop
+Agent-4 classifies a customer as HIGH and recommends ESCALATE. What should happen next in a properly controlled banking process?
+*
+A. The AI should automatically close the customer’s bank account
+B. A compliance analyst should review the case before final action
+C. Agent-1 should delete the customer data
+D. The workflow should change the result to LOW
+Briefly explain your answer.
+*
+
+8. Dynamic Business Rules
+Today the bank uses Transfer_Amount > 15000 → HIGH. Next month management changes the threshold to Transfer_Amount > 20000 → HIGH. What is the best design?
+*
+A. Rebuild the entire workflow
+B. Change the LLM model
+C. Update the Rules CSV
+D. Add another AI Agent
+Briefly explain your answer.
+*
+
+9. Multi-Agent System
+Which part of the workflow best represents a Multi-Agent System?
+*
+A. The Form Trigger alone
+B. Agent-1, Agent-2, and Agent-3 performing different specialist assessments
+C. One CSV file
+D. The Management Dashboard only
+Briefly explain your answer.
+*
+
+10. Agentic AI
+Which statement best describes the Agentic AI part of this workflow?
+*
+A. One LLM answering one question
+B. Several specialist agents, data, rules, and an orchestrator working together toward a risk-review goal
+C. A CSV file containing transactions
+D. A human manually reviewing every transaction without AI
+Briefly explain your answer.
+*
+
+11. Extending Agent-4
+A new Agent-5 is introduced and produces a new specialist risk report. What else should be changed?
+*
+A. Agent-4 should be able to receive and consider Agent-5’s result
+B. Agent-1 should be removed
+C. The Form Trigger should be deleted
+D. The LLM should no longer use structured output
+Briefly explain your answer.
+*
+
+12. Identify the Component
+Return the result using these fields: Customer ID, Risk Level, Triggered Rules, Supporting Evidence, Recommended Action.
+*
+A. User Prompt
+B. System Prompt
+C. Structured Output
+Briefly explain your answer.
+*
+
+13. Identify the Component
+Review the current customer record against all supplied banking risk rules.
+*
+A. User Prompt
+B. System Prompt
+C. Structured Output
+Briefly explain your answer.
+*
+
+14. Identify the Component
+You are a Banking Risk Specialist. Use only the supplied data and rules. Do not invent information.
+*
+A. User Prompt
+B. System Prompt
+C. Structured Output
+15. An AI Agent can be assigned a specific role and use instructions, data, and tools to complete a task.
+*
+True
+False
+16.  Agentic AI refers only to a single LLM generating a response to one prompt
+*
+True
+False
+17. In your own words, explain the difference between an AI Agent and Agentic AI.
+*
+18.  Why is Human-in-the-Loop important when Agentic AI is used in banking or financial services
+*
+19.  Which of the following can be components of an Agentic AI system? Select all that apply.
+*
+AI Agents
+LLMs
+Tools or APIs
+Business data and rules
+AI orchestration
+Human oversight6
+20.  Which of the following are good practices when using AI Agents for risk assessment? Select all that apply.
+*
+Use approved data and business rules
+Allow the Agent to invent missing customer information
+Use guardrails to control AI behaviour
+Produce structured outputs
+Keep higher-risk cases subject to human review
+Ignore supporting evidence if the final risk score looks reasonable
+Briefly explain your answer.
+*
+
