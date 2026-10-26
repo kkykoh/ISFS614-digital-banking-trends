@@ -1,0 +1,26 @@
+﻿Customer_ID,Customer_Name,R1_Risk_Level,R2_Risk_Level,R3_Risk_Level,Overall_Risk_Level,Overall_Risk_Score,Contributing_Agents.0,Main_Red_Flags.0,Supporting_Evidence.0,Recommended_Action,Management_Note
+CUST7301,Chloe Tan,LOW,LOW,HIGH,HIGH,90,Agent-3,Watchlist Flag triggered for Chloe Tan,Watchlist_Flag = Yes matched rule condition = Yes; Severity = HIGH,ESCALATE,Immediate escalation and investigation is required.
+CUST7302,Ryan Lim,LOW,LOW,HIGH,HIGH,90,Agent-3,Sanctions exact match for Ryan Lim,Sanctions_Exact_Match = Yes matched rule condition = Yes; Severity = HIGH,ESCALATE,Immediate escalation and investigation is required.
+CUST7303,Aisha Noor,LOW,LOW,MEDIUM,MEDIUM,60,Agent-3,Adverse Media Flag for Aisha Noor,Adverse_Media_Flag = Yes matched rule condition = Yes; Severity = MEDIUM,MANUAL_REVIEW,Structured manual review is required.
+CUST7304,Vikram Nair,LOW,LOW,MEDIUM,MEDIUM,60,Agent-3,Adverse Media Flag for Vikram Nair,Adverse_Media_Flag = Yes matched rule condition = Yes; Severity = MEDIUM,MANUAL_REVIEW,Structured manual review is required.
+CUST7305,Hana Lee,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7306,Ethan Goh,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7307,Mei Chen,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7308,Arjun Kumar,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7309,Sofia Rahman,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7310,Marcus Teo,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7311,Nadia Wong,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7312,Darren Chua,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7313,Priya Menon,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7314,Lucas Ong,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7315,Farah Aziz,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7316,Joshua Ng,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7317,Anika Shah,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7318,Samuel Koh,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7319,Lina Lim,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7320,Dev Patel,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7321,Rachel Tan,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7322,Imran Hassan,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7323,Natalie Lee,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7324,Kevin Yeo,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.
+CUST7325,Sara Nair,LOW,LOW,LOW,LOW,20,,,,APPROVE,The customer may proceed under standard monitoring.

@@ -1,0 +1,6 @@
+﻿output.Customer_ID,output.Customer_Name,output.Risk_Level,output.Triggered_Rules.0,output.Supporting_Evidence.0,output.Summary,output.Recommended_Action
+CUST6201,Nora Lim,HIGH,A3-R01,PEP_Flag = Yes matched rule condition = Yes; Severity = HIGH,"The PEP_Flag is set to Yes, triggering a HIGH severity rule.",ESCALATE
+CUST6202,Jason Tan,HIGH,A3-R02,Sanctions_Exact_Match = Yes matched rule condition = Yes; Severity = HIGH,The regulatory screening triggered a rule due to a sanctions exact match with high severity.,ESCALATE
+CUST6203,Aisha Khan,HIGH,A3-R03,Watchlist_Flag = Yes matched rule condition = Yes; Severity = HIGH,"The Watchlist_Flag is set to Yes, triggering a HIGH severity rule.",ESCALATE
+CUST6204,Ravi Menon,HIGH,A3-R05,Regulatory_Enforcement_Flag = Yes matched rule condition = Yes; Severity = HIGH,"The regulatory screening triggered a rule due to the Regulatory Enforcement Flag being set to Yes, which has a HIGH severity.",ESCALATE
+CUST6205,Sara Lee,MEDIUM,A3-R04,Adverse_Media_Flag = Yes matched rule condition = Yes; Severity = MEDIUM,One rule was triggered based on the adverse media flag.,MANUAL_REVIEW

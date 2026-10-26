@@ -1,0 +1,6 @@
+﻿output.Customer_ID,output.Customer_Name,output.Risk_Level,output.Summary,output.Recommended_Action
+CUST6201,Nora Lim,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6202,Jason Tan,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6203,Aisha Khan,LOW,No rules triggered based on the current transaction record.,APPROVE
+CUST6204,Ravi Menon,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6205,Sara Lee,LOW,No rules triggered based on the customer's transaction record.,APPROVE

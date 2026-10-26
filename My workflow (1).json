@@ -1,0 +1,1345 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Customer & Transaction Validation",
+        "formDescription": "Upload all eight input files for AI-assisted transaction review.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Customer Profile File F1",
+              "fieldType": "file",
+              "fieldName": "F1",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Transaction Report File F2",
+              "fieldType": "file",
+              "fieldName": "F2",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Agent-1 Rules",
+              "fieldType": "file",
+              "fieldName": "Agent_1_Rules",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "F4 Cash Deposit",
+              "fieldType": "file",
+              "fieldName": "F4",
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "F5 Regulatory Input",
+              "fieldType": "file",
+              "fieldName": "F5",
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Agent-2 Rules",
+              "fieldType": "file",
+              "fieldName": "Agent_2_Rules",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Agent-3 Rules",
+              "fieldType": "file",
+              "fieldName": "Agent_3_Rules",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "F3 Transfer Information",
+              "fieldType": "file",
+              "fieldName": "F3",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7697efd2-7d23-4bb9-be25-0c9372d23128",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -1568,
+        192
+      ],
+      "webhookId": "11968b24-0174-491e-854a-0809668977a8"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=F2",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "1250caa8-5260-4a06-a253-caf0be1df70b",
+      "name": "Extract F2 - Transaction Report",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        -208
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=Agent_1_Rules",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "48b66899-fa20-4463-ab14-d9801153787b",
+      "name": "Extract Agent 1 Rules",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1120,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "rules",
+        "options": {
+          "includeBinaries": false
+        }
+      },
+      "id": "833a4691-2f9a-4a8d-8f5e-2b04c731a166",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -896,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=F3",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "185f76cb-ff10-4bae-a409-f4fb51feeb83",
+      "name": "Extract F3 - Transfer File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=F4",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "fbb31262-cdff-4943-b583-80b1d5f7601d",
+      "name": "Extract F4 - Cash Deposit",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "Agent_2_Rules",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "81c64cba-15a4-464c-8a75-b477ddfa1ba9",
+      "name": "Extract Agent 2 Rules",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1120,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "rules",
+        "options": {
+          "includeBinaries": false
+        }
+      },
+      "id": "e9acf55c-e664-4e89-81b0-dc822c1a409f",
+      "name": "Aggregate Agent-2 Rules",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -896,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "F5",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "a6dfe39a-0920-4a2f-871b-9dda6c520811",
+      "name": "Regulatory Screening File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1120,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "Agent_3_Rules",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "e6aec389-ac0f-498c-8d87-ce7213090f54",
+      "name": "Extract Agent 3 Rules",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "rules",
+        "options": {
+          "includeBinaries": false
+        }
+      },
+      "id": "ab826353-107f-4f51-8d66-e3c2003fb213",
+      "name": "Aggregate2",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "F1",
+        "options": {
+          "enableBOM": true
+        }
+      },
+      "id": "82b4a156-dc57-4713-93d8-b0e86473f683",
+      "name": "Extract F1 - Customer Profile",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        -400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "580aaab5-6ba7-4e73-a736-fbfd6ae1b36b",
+      "name": "Merge F1&F2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1120,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "9b2a4b38-cb72-4704-8f54-c44f247c45a3",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -608,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read all rows from F1 and F2\nconst f1 = $('Extract F1 - Customer Profile').all();\nconst f2 = $('Extract F2 - Transaction Report').all();\n\n// Build a lookup map from F1 using normalized Customer_ID\nconst f1Map = new Map(\n  f1.map(item => [\n    String(item.json.Customer_ID ?? '').trim().toUpperCase(),\n    item.json\n  ])\n);\n\n// INNER JOIN F2 to F1 by Customer_ID\nreturn f2\n  .map(item => {\n    const id = String(item.json.Customer_ID ?? '').trim().toUpperCase();\n    const profile = f1Map.get(id);\n\n    if (!profile) return null;\n\n    return {\n      json: {\n        ...profile,\n        ...item.json,\n        Customer_ID: id\n      }\n    };\n  })\n  .filter(Boolean);"
+      },
+      "id": "7397ec24-343d-47b7-8bad-bd5222052505",
+      "name": "Join F1&F2 by customer_id",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -896,
+        -336
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "71a32485-51cb-4573-8542-ffb1f9f61fa8",
+      "name": "Merge3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1120,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read all rows from F1 and F2\nconst f1 = $('Extract F3 - Transfer File').all();\nconst f2 = $('Extract F4 - Cash Deposit').all();\n\n// Build a lookup map from F1 using normalized Customer_ID\nconst f1Map = new Map(\n  f1.map(item => [\n    String(item.json.Customer_ID ?? '').trim().toUpperCase(),\n    item.json\n  ])\n);\n\n// INNER JOIN F2 to F1 by Customer_ID\nreturn f2\n  .map(item => {\n    const id = String(item.json.Customer_ID ?? '').trim().toUpperCase();\n    const profile = f1Map.get(id);\n\n    if (!profile) return null;\n\n    return {\n      json: {\n        ...profile,\n        ...item.json,\n        Customer_ID: id\n      }\n    };\n  })\n  .filter(Boolean);"
+      },
+      "id": "0ed6347f-f116-40a9-894a-dc814fc73801",
+      "name": "Join F4&F3 By Customer_ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -896,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "6c24e327-e340-487b-8e36-c930b402bcb0",
+      "name": "Wait for Transaction Data + Rules",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -608,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "c1418e52-4f5c-46ad-85f7-6f5d438be3d9",
+      "name": "Wait for Customer Data + Rules3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -896,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Customer record:\n{{ JSON.stringify($json) }}\n\nAgent-1 rules:\n{{ JSON.stringify($('Extract Agent 1 Rules').all().map(item => item.json)) }}\n\nEvaluate this customer against every supplied rule.\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are Agent-1, the Customer Profile Risk specialist.\n\nEvaluate the current customer against ALL supplied Agent-1 rules.\n\nInstructions:\n- Read every rule supplied in the Agent-1 rules list.\n- Apply each rule independently and exactly as defined.\n- Do not assume a fixed number of rules.\n- Do not assume specific Rule_ID values.\n- New rules may be added to the rules file at any time.\n- Evaluate all supplied rules dynamically.\n- Use only the supplied customer data and supplied rules.\n- Do not create, modify, skip, or invent rules.\n- Triggered_Rules must contain only the Rule_ID values of rules whose conditions are true.\n- Determine the overall Risk_Level from the severity of the triggered rules.\n- If multiple rules are triggered, use the highest severity.\n- If no rule is triggered, set Risk_Level to LOW.\n\nReturn:\nCustomer_ID\nCustomer_Name\nRisk_Level\nTriggered_Rules\nSupporting_Evidence\nSummary\nRecommended_Action\n\nRecommended_Action:\nLOW = APPROVE\nMEDIUM = MANUAL_REVIEW\nHIGH = ESCALATE\n\nReturn ONLY the JSON object required by the connected Structured Output Parser.\nDo not return markdown.\nDo not return explanatory text outside the JSON object."
+        }
+      },
+      "id": "b718f440-d3a3-42e1-839a-446af2e0c795",
+      "name": "AI Agent 1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -320,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\"Customer_ID\":\"CUST0001\",\"Customer_Name\":\"Example Customer\",\"Risk_Level\":\"HIGH\",\"Triggered_Rules\":[\"A1-R02\"],\"Supporting_Evidence\":[\"Total_Monthly_Transaction_Value exceeded the rule threshold\"],\"Summary\":\"Customer matched at least one Agent-1 rule.\",\"Recommended_Action\":\"MANUAL_REVIEW\"}"
+      },
+      "id": "9673f09c-122d-4d92-9184-74eb60bf702b",
+      "name": "Structured Output Parser4",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -192,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "e0fc1343-0519-4438-979d-ec77d8063a4d",
+      "name": "Merge Specialist Reports",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        368,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Data to evaluate:\nCustomer transaction record:\n{{ JSON.stringify($json) }}\n\nAgent-2 rules:\n{{ JSON.stringify($('Extract Agent 2 Rules').all().map(item => item.json)) }}\n\nEvaluate this customer against every supplied Agent-2 rule.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are Agent-2, the Transaction Pattern Risk specialist.\n\nEvaluate the current customer transaction record against ALL supplied Agent-2 rules.\n\nInstructions:\n- Read every rule supplied in the Agent-2 rules list.\n- Apply each rule independently and exactly as defined.\n- Do not assume a fixed number of rules.\n- Do not assume specific Rule_ID values.\n- New rules may be added to the rules CSV at any time.\n- Evaluate all supplied rules dynamically.\n- Use only the supplied F1 Transfer data, F2 Cash Deposit data, and supplied Agent-2 rules.\n- Do not create, modify, skip, or invent rules.\n\nFor each supplied rule:\n- Read the Field specified in the rule.\n- Read the customer's actual value for that Field.\n- Read the Operator and Value from the rule.\n- Evaluate the condition exactly.\n- Trigger the rule only if the condition is true.\n\nInterpret operators exactly:\n- > means strictly greater than\n- >= means greater than or equal to\n- < means strictly less than\n- <= means less than or equal to\n- = means equal to\n- != means not equal to\n\nTriggered_Rules must contain only the Rule_ID values of rules whose conditions are true.\n\nRisk level validation:\n- Overall Risk_Level must equal the highest Severity among the triggered rules.\n- Never return HIGH unless at least one triggered rule has Severity = HIGH.\n- Return MEDIUM only when at least one triggered rule has Severity = MEDIUM and no triggered rule has Severity = HIGH.\n- If Triggered_Rules is empty, Risk_Level must be LOW.\n\nFinal validation before returning:\n- Re-evaluate every Triggered_Rules entry one last time using the actual customer value, operator, and rule threshold.\n- If any triggered rule condition is false, remove that rule from Triggered_Rules.\n- Supporting_Evidence must correspond only to rules that remain triggered after final validation.\n- Recalculate Risk_Level after final validation using only the remaining triggered rules.\n- If no rules remain after validation, set:\n  Risk_Level = LOW\n  Triggered_Rules = []\n  Supporting_Evidence = []\n  Recommended_Action = APPROVE\n\nReturn:\nCustomer_ID\nCustomer_Name\nRisk_Level\nTriggered_Rules\nSupporting_Evidence\nSummary\nRecommended_Action\n\nRecommended_Action:\nLOW = APPROVE\nMEDIUM = MANUAL_REVIEW\nHIGH = ESCALATE\n\nReturn ONLY the JSON object required by the connected Structured Output Parser.\nDo not return markdown.\nDo not return explanatory text outside the JSON object."
+        }
+      },
+      "id": "9e9a0ccc-9b6c-42a8-a4e8-06bf0317c0bf",
+      "name": "AI Agent 2",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -400,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\"Customer_ID\":\"CUST0001\",\"Customer_Name\":\"Example Customer\",\"Risk_Level\":\"HIGH\",\"Triggered_Rules\":[\"A1-R02\"],\"Supporting_Evidence\":[\"Total_Monthly_Transaction_Value exceeded the rule threshold\"],\"Summary\":\"Customer matched at least one Agent-1 rule.\",\"Recommended_Action\":\"MANUAL_REVIEW\"}"
+      },
+      "id": "5dc0ddce-3790-4144-8c9f-4a6b78d0e5fa",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -192,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Regulatory screening record:\n{{ JSON.stringify($json) }}\n\nAgent-3 rules:\n{{ JSON.stringify($('Extract Agent 3 Rules').all().map(item => item.json)) }}\n\nEvaluate this record against every supplied Agent-3 rule.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are Agent-3, the Regulatory Screening Risk Specialist.\n\nYour task is to evaluate the current regulatory screening record against ALL supplied Agent-3 rules.\n\nUse ONLY:\n1. The current regulatory screening record supplied in this execution.\n2. The Agent-3 rules supplied in this execution.\n\nDo not use:\n- previous execution data\n- previous customers\n- prior outputs\n- remembered results\n- assumptions\n- external knowledge\n- hardcoded Rule_ID values\n- hardcoded thresholds\n\nRULE PROCESSING\n\n- Read every rule supplied in the Agent-3 rules list.\n- Do not assume a fixed number of rules.\n- New rules may be added to the rules CSV at any time.\n- Evaluate all supplied rules dynamically.\n- Do not create, modify, skip, invent, merge, or reinterpret rules.\n\nFor each supplied rule:\n\n1. Read Rule_ID.\n2. Read Field.\n3. Read Operator.\n4. Read Value.\n5. Read Severity.\n6. Read the actual value of Field from the current regulatory screening record.\n7. Evaluate the rule condition exactly.\n8. Trigger the rule only when the condition is true.\n\nOPERATOR INTERPRETATION\n\nInterpret operators exactly as follows:\n\n- > means strictly greater than\n- >= means greater than or equal to\n- < means strictly less than\n- <= means less than or equal to\n- = means equal to\n- == means equal to\n- != means not equal to\n\nFor text comparisons:\n\n- Trim leading and trailing spaces.\n- Compare text case-insensitively.\n- Example:\n  \"Yes\", \"YES\", \"yes\", and \" Yes \" must be treated as equal.\n\nFor numeric comparisons:\n\n- Convert numeric-looking values to numbers before comparison.\n- Do not compare numeric values as text.\n\nMISSING VALUES\n\nIf the Field required by a rule is missing, null, undefined, or empty:\n\n- Do not trigger that rule.\n- Do not invent a value.\n- Do not infer a value.\n\nTRIGGERED RULES\n\nTriggered_Rules must contain ONLY Rule_ID values for rules whose conditions are true.\n\nDo not include a Rule_ID if its condition is false.\n\nDo not include a Rule_ID based on general suspicion or context.\n\nSEVERITY HANDLING\n\nThe Severity value supplied in each rule is authoritative.\n\nYou must use the supplied Severity exactly as provided.\n\nNever downgrade or upgrade the Severity of a triggered rule.\n\nExamples:\n\n- If a triggered rule has Severity = HIGH, that rule contributes HIGH.\n- If a triggered rule has Severity = MEDIUM, that rule contributes MEDIUM.\n- If a triggered rule has Severity = LOW, that rule contributes LOW.\n\nRISK LEVEL CALCULATION\n\nOverall Risk_Level must equal the highest Severity among all valid triggered rules.\n\nSeverity ranking:\n\nHIGH > MEDIUM > LOW\n\nApply these rules exactly:\n\n- If at least one valid triggered rule has Severity = HIGH:\n  Risk_Level = HIGH\n\n- Else if at least one valid triggered rule has Severity = MEDIUM:\n  Risk_Level = MEDIUM\n\n- Else if valid triggered rules exist only with Severity = LOW:\n  Risk_Level = LOW\n\n- If Triggered_Rules is empty:\n  Risk_Level = LOW\n\nDo not return MEDIUM when any valid triggered rule has Severity = HIGH.\n\nDo not return LOW when any valid triggered rule has Severity = MEDIUM or HIGH.\n\nDo not return HIGH unless at least one valid triggered rule has Severity = HIGH.\n\nRECOMMENDED ACTION\n\nSet Recommended_Action only from the final Risk_Level:\n\nLOW = APPROVE\nMEDIUM = MANUAL_REVIEW\nHIGH = ESCALATE\n\nDo not assign Recommended_Action independently from Risk_Level.\n\nSUPPORTING EVIDENCE\n\nSupporting_Evidence must correspond only to valid triggered rules.\n\nFor every triggered rule, Supporting_Evidence should clearly state:\n\n- the actual field name\n- the actual field value\n- the rule operator\n- the rule comparison value\n- the resulting triggered severity\n\nExample:\n\n\"Watchlist_Flag = Yes matched rule condition = Yes; Severity = HIGH\"\n\nDo not include evidence for rules that did not trigger.\n\nSUMMARY\n\nSummary must briefly explain the final result based only on valid triggered rules.\n\nIf no rules trigger, state that no supplied Agent-3 regulatory rule was triggered.\n\nDo not introduce additional risk factors that are not present in the supplied rules.\n\nFINAL VALIDATION\n\nBefore returning the result, perform this validation sequence:\n\n1. Re-read the current regulatory screening record.\n2. Re-read every supplied Agent-3 rule.\n3. Re-check every Triggered_Rules entry.\n4. Confirm that each triggered rule condition is actually true.\n5. Remove any triggered rule whose condition is false.\n6. Rebuild Supporting_Evidence using only rules that remain valid.\n7. Recalculate Risk_Level using the highest Severity of the remaining valid triggered rules.\n8. Recalculate Recommended_Action from the final Risk_Level.\n9. Confirm that no customer or value from a previous execution appears in the result.\n\nIf no rules remain after validation:\n\nRisk_Level = LOW\nTriggered_Rules = []\nSupporting_Evidence = []\nRecommended_Action = APPROVE\n\nIMPORTANT CONSISTENCY RULES\n\n- If Watchlist_Flag = Yes and the matched supplied rule has Severity = HIGH:\n  Risk_Level MUST be HIGH.\n\n- If Sanctions_Exact_Match = Yes and the matched supplied rule has Severity = HIGH:\n  Risk_Level MUST be HIGH.\n\n- If PEP_Flag = Yes and the matched supplied rule has Severity = HIGH:\n  Risk_Level MUST be HIGH.\n\n- If Regulatory_Enforcement_Flag = Yes and the matched supplied rule has Severity = HIGH:\n  Risk_Level MUST be HIGH.\n\n- If Adverse_Media_Flag = Yes and the matched supplied rule has Severity = MEDIUM:\n  Risk_Level must be MEDIUM unless another triggered rule has Severity = HIGH.\n\nThese are consistency checks only.\nAlways use the actual supplied rules and supplied Severity values as the source of truth.\n\nRETURN FORMAT\n\nReturn exactly these fields:\n\nCustomer_ID\nCustomer_Name\nRisk_Level\nTriggered_Rules\nSupporting_Evidence\nSummary\nRecommended_Action\n\nReturn ONLY the JSON object required by the connected Structured Output Parser.\n\nDo not return markdown.\nDo not return explanatory text outside the JSON object.\nDo not include extra fields."
+        }
+      },
+      "id": "20382eb3-c2f0-45f4-a89d-c9e11ec4b6f6",
+      "name": "AI Agent 3",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -672,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\"Customer_ID\":\"CUST0001\",\"Customer_Name\":\"Example Customer\",\"Risk_Level\":\"HIGH\",\"Triggered_Rules\":[\"A3-R01\"],\"Supporting_Evidence\":[\"Regulatory screening condition matched\"],\"Summary\":\"Customer matched at least one Agent-3 regulatory rule.\",\"Recommended_Action\":\"ESCALATE\"}"
+      },
+      "id": "f1e74bcb-6e6e-45e8-8388-54de01c5c6e3",
+      "name": "Structured Output Parser1",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -544,
+        976
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "fileName": "R1_Customer_Profile_Risk.csv"
+        }
+      },
+      "id": "d4b08efa-b6d0-4d99-bd97-fac474a817cf",
+      "name": "Generate R1 CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        32,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "fileName": "R2_Transaction_Pattern_Risk.csv"
+        }
+      },
+      "id": "f897f957-bd16-4a42-aa7e-ca4e08bd5b97",
+      "name": "Generate R2 CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "fileName": "R3_Regulatory_Screening.csv"
+        }
+      },
+      "id": "bb98d810-55ba-4c6d-9d5f-e7ce6162e7ae",
+      "name": "Generate R3 CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -256,
+        832
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "8f1949fa-5f8e-43de-bab8-5c8413351757",
+      "name": "Normalize Specialist Reports",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "reports",
+        "options": {}
+      },
+      "id": "40dd8eb4-d7b5-4bfb-b438-1255aab98708",
+      "name": "Aggregate Specialist Reports",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        896,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\nCURRENT SPECIALIST REPORTS:\n\n{{ JSON.stringify($json.reports) }}\n\nUse ONLY the customer records in CURRENT SPECIALIST REPORTS.\n\nDo not use any customer IDs, names, counts, risks, findings, examples, or dashboard values from previous executions or parser examples.\n\nGenerate exactly one R4 record for each unique Customer_ID present in the current specialist reports.\n\nCURRENT SPECIALIST REPORTS FROM THIS EXECUTION:\n\n{{ JSON.stringify($json.reports) }}\n\nIMPORTANT:\nUse ONLY the customer records contained in CURRENT SPECIALIST REPORTS above.\nDo not use customers, names, IDs, counts, findings, examples, or results from any previous execution.\nDo not invent customers.\nGenerate exactly one R4 record per unique Customer_ID found in the current reports.\n\nAlso generate Management_Report_Image_Prompt.\n\nManagement_Report_Image_Prompt must describe a professional executive banking risk dashboard image using the completed Dashboard and R4 results.\n\nThe image must include:\n- title: Management Risk Dashboard\n- executive summary\n- Total Customers KPI\n- HIGH / MEDIUM / LOW counts and percentages\n- risk distribution chart\n- management action distribution\n- top red flags\n- management recommendations\n- priority HIGH and MEDIUM risk customers\n- dark navy corporate header\n- red / amber / green risk colors\n- modern professional banking-management style\n\nUse only the actual Dashboard and R4 values.\nDo not invent values.\n\n\nAlso generate Management_Report_SVG.\n\nManagement_Report_SVG must be a complete professional one-page executive management dashboard in SVG format.\n\nUse the completed Dashboard and R4 results only.\n\nThe SVG management report must contain:\n\n- dark navy executive header\n- title: Management Risk Dashboard\n- subtitle: Agentic AI Customer Risk Assessment\n- HIGH / MEDIUM / LOW legend\n- executive summary panel\n- KPI cards for:\n  - Total Customers\n  - High Risk count and percentage\n  - Medium Risk count and percentage\n  - Low Risk count and percentage\n- colorful risk distribution chart\n- management action bars for:\n  - ESCALATE\n  - MANUAL REVIEW\n  - APPROVE\n- Top Red Flags panel\n- Management Recommendations panel\n- Priority Customers table showing HIGH and MEDIUM customers\n- R1, R2, R3, Overall Risk, Risk Score and Recommended Action\n- professional management footer\n\nRisk colors:\nHIGH = red\nMEDIUM = amber/orange\nLOW = green\nNeutral = dark navy / blue / grey\n\nThe SVG must be:\n- visually professional\n- suitable for senior banking management\n- one-page landscape dashboard\n- approximately 1600 x 900 pixels\n- completely self-contained\n- valid SVG\n- based only on actual Dashboard and R4 values\n\nDo not invent any statistics, customers, findings or recommendations.\n\nReturn Management_Report_SVG as a valid SVG string beginning with:\n\n<svg\n\nand ending with:\n\n</svg>\n\nReturn exactly these three top-level fields:\n\nDashboard\nR4\nManagement_Report_SVG\n\nGenerate Management_Report_SVG as a compact one-line SVG string.\n\nUse single quotes for all SVG attributes.\nDo not use double quotes inside the SVG.\nDo not return markdown or code fences.\n\nReturn exactly:\nDashboard\nR4\nManagement_Report_SVG",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are Agent-4, the Agentic AI Risk Orchestrator for a banking customer-risk assessment workflow.\n\nYou receive completed specialist assessments from:\n\nAgent-1 = R1 Customer Profile Risk\nAgent-2 = R2 Transaction Pattern Risk\nAgent-3 = R3 Regulatory Screening Risk\n\nYour responsibility is to consolidate the specialist assessments into:\n\n1. One final R4 risk decision for every customer.\n2. One portfolio-level management Dashboard.\n\nYou must work consistently regardless of:\n\n- the number of customers\n- the number of LOW-risk customers\n- the number of MEDIUM-risk customers\n- the number of HIGH-risk customers\n- the order of specialist records\n- the order of customers\n- the risk distribution of the portfolio\n\nDo not assume a fixed number of records.\n\nDo not assume 5 customers.\n\nDo not assume 10 customers.\n\nDo not assume any particular Customer_ID.\n\nProcess every supplied customer dynamically.\n\n==================================================\nA. SOURCE OF TRUTH\n==================================================\n\nTreat the completed specialist assessments as authoritative.\n\nR1 represents Agent-1 Customer Profile Risk.\n\nR2 represents Agent-2 Transaction Pattern Risk.\n\nR3 represents Agent-3 Regulatory Screening Risk.\n\nDo NOT:\n\n- re-evaluate the original source CSV files\n- re-run specialist rules\n- create new specialist findings\n- change specialist Risk_Level values\n- invent triggered rules\n- invent evidence\n- invent Customer_ID values\n- invent Customer_Name values\n\nAgent-4 performs orchestration and consolidation only.\n\n==================================================\nB. CUSTOMER GROUPING\n==================================================\n\nGroup all supplied specialist records strictly by:\n\nCustomer_ID\n\nFor every unique Customer_ID, locate that customer's:\n\n- R1 assessment\n- R2 assessment\n- R3 assessment\n\nNever combine specialist assessments belonging to different customers.\n\nCustomer_Name must come from the supplied specialist records.\n\nIf Customer_Name appears in multiple specialist reports, preserve the supplied customer name.\n\n==================================================\nC. CUSTOMER COMPLETENESS\n==================================================\n\nDetermine the number of unique Customer_ID values present in the supplied specialist assessments.\n\nR4 must contain exactly ONE record for every unique Customer_ID.\n\nRules:\n\n- Do not omit customers.\n- Do not duplicate customers.\n- Do not create customers.\n- Do not change Customer_ID.\n- Do not stop after 5 records.\n- Do not stop after 10 records.\n- Continue until every unique Customer_ID has exactly one R4 record.\n\nBefore returning the result:\n\nR4.length must equal the number of unique Customer_ID values.\n\n==================================================\nD. SPECIALIST RISK LEVELS\n==================================================\n\nFor each customer, obtain:\n\nR1_Risk_Level\nR2_Risk_Level\nR3_Risk_Level\n\nValid values are:\n\nLOW\nMEDIUM\nHIGH\n\nPreserve the specialist risk levels exactly as supplied.\n\nDo not downgrade or upgrade specialist risk levels.\n\n==================================================\nE. FINAL OVERALL RISK DECISION\n==================================================\n\nDetermine Overall_Risk_Level using this deterministic hierarchy:\n\nIF any of:\n\nR1_Risk_Level = HIGH\nOR\nR2_Risk_Level = HIGH\nOR\nR3_Risk_Level = HIGH\n\nTHEN:\n\nOverall_Risk_Level = HIGH\n\nELSE IF any of:\n\nR1_Risk_Level = MEDIUM\nOR\nR2_Risk_Level = MEDIUM\nOR\nR3_Risk_Level = MEDIUM\n\nTHEN:\n\nOverall_Risk_Level = MEDIUM\n\nELSE:\n\nOverall_Risk_Level = LOW\n\nThis hierarchy is mandatory.\n\nA HIGH specialist assessment can NEVER result in MEDIUM or LOW overall risk.\n\nA MEDIUM specialist assessment can NEVER result in LOW overall risk unless another specialist is HIGH, in which case overall risk is HIGH.\n\n==================================================\nF. OVERALL RISK SCORE\n==================================================\n\nSet Overall_Risk_Score exactly from Overall_Risk_Level:\n\nHIGH = 90\nMEDIUM = 60\nLOW = 20\n\nDo not generate any other score.\n\nDo not estimate scores.\n\nDo not average specialist risk levels.\n\nDo not create scores such as 65, 70, 80, 85 or 95.\n\nThe mapping is fixed:\n\nHIGH -> 90\nMEDIUM -> 60\nLOW -> 20\n\n==================================================\nG. RECOMMENDED ACTION\n==================================================\n\nSet Recommended_Action exactly from Overall_Risk_Level:\n\nHIGH = ESCALATE\n\nMEDIUM = MANUAL_REVIEW\n\nLOW = APPROVE\n\nDo not use alternative wording.\n\nDo not return:\n\nMANUAL REVIEW\n\nReturn exactly:\n\nMANUAL_REVIEW\n\n==================================================\nH. CONTRIBUTING AGENTS\n==================================================\n\nContributing_Agents must contain only specialist agents whose Risk_Level is MEDIUM or HIGH.\n\nRules:\n\nIf R1_Risk_Level is MEDIUM or HIGH:\ninclude Agent-1\n\nIf R2_Risk_Level is MEDIUM or HIGH:\ninclude Agent-2\n\nIf R3_Risk_Level is MEDIUM or HIGH:\ninclude Agent-3\n\nIf all three specialist risk levels are LOW:\n\nContributing_Agents = []\n\nDo not include an agent whose specialist risk level is LOW.\n\n==================================================\nI. MAIN RED FLAGS\n==================================================\n\nMain_Red_Flags must consolidate important risk findings already supplied by the specialist agents.\n\nUse only specialist:\n\n- Triggered_Rules\n- Supporting_Evidence\n- Summary\n- risk findings\n\nDo not invent new red flags.\n\nDo not duplicate the same red flag unnecessarily.\n\nFor an all-LOW customer:\n\nMain_Red_Flags = []\n\n==================================================\nJ. SUPPORTING EVIDENCE\n==================================================\n\nSupporting_Evidence must consolidate relevant evidence from specialist assessments that contributed to MEDIUM or HIGH risk.\n\nUse only supplied evidence.\n\nDo not fabricate evidence.\n\nDo not infer evidence that was not supplied.\n\nFor an all-LOW customer:\n\nSupporting_Evidence = []\n\n==================================================\nK. MANAGEMENT NOTE\n==================================================\n\nGenerate one short management-oriented Management_Note for each customer.\n\nThe note must be based only on the final R4 decision and supplied specialist findings.\n\nGuidance:\n\nHIGH:\nstate that immediate escalation / investigation is required.\n\nMEDIUM:\nstate that structured manual review is required.\n\nLOW:\nstate that the customer may proceed under standard monitoring.\n\nManagement_Note must:\n\n- be concise\n- contain plain text only\n- contain no JSON fragments\n- contain no brackets such as }]}}\n- contain no markdown\n- contain no trailing structural characters\n- end as a normal sentence\n\n==================================================\nL. R4 REQUIRED STRUCTURE\n==================================================\n\nEach R4 customer record must contain exactly these fields:\n\nCustomer_ID\nCustomer_Name\nR1_Risk_Level\nR2_Risk_Level\nR3_Risk_Level\nOverall_Risk_Level\nOverall_Risk_Score\nContributing_Agents\nMain_Red_Flags\nSupporting_Evidence\nRecommended_Action\nManagement_Note\n\nProduce exactly one R4 object for every unique Customer_ID.\n\n==================================================\nM. R4 SORTING\n==================================================\n\nAfter all R4 records are generated, sort R4 for management readability:\n\n1. HIGH Overall_Risk_Level first\n2. MEDIUM Overall_Risk_Level second\n3. LOW Overall_Risk_Level last\n\nWithin the same Overall_Risk_Level:\n\nsort by Customer_ID ascending.\n\nSorting must never remove or duplicate customers.\n\n==================================================\nN. PORTFOLIO DASHBOARD\n==================================================\n\nAfter R4 has been completely generated and validated, create Dashboard.\n\nDashboard must describe the entire R4 portfolio.\n\nUse the FINAL validated R4 array as the source for Dashboard calculations.\n\nDo not calculate Dashboard statistics before R4 is complete.\n\n==================================================\nO. DASHBOARD TOTAL CUSTOMERS\n==================================================\n\nDashboard.Total_Customers must equal:\n\nR4.length\n\nNever invent a portfolio size.\n\nIf R4 contains 5 records:\n\nTotal_Customers = 5\n\nIf R4 contains 10 records:\n\nTotal_Customers = 10\n\nIf R4 contains 100 records:\n\nTotal_Customers = 100\n\n==================================================\nP. DASHBOARD RISK COUNTS\n==================================================\n\nCalculate directly from final R4:\n\nHigh_Risk_Count =\nnumber of R4 records where Overall_Risk_Level = HIGH\n\nMedium_Risk_Count =\nnumber of R4 records where Overall_Risk_Level = MEDIUM\n\nLow_Risk_Count =\nnumber of R4 records where Overall_Risk_Level = LOW\n\nValidation:\n\nHigh_Risk_Count\n+ Medium_Risk_Count\n+ Low_Risk_Count\n\nmust equal:\n\nTotal_Customers\n\n==================================================\nQ. DASHBOARD RISK PERCENTAGES\n==================================================\n\nCalculate:\n\nHigh_Risk_Percentage =\nHigh_Risk_Count / Total_Customers * 100\n\nMedium_Risk_Percentage =\nMedium_Risk_Count / Total_Customers * 100\n\nLow_Risk_Percentage =\nLow_Risk_Count / Total_Customers * 100\n\nIf Total_Customers = 0:\n\nall percentages = 0\n\nOtherwise:\n\nHigh_Risk_Percentage\n+ Medium_Risk_Percentage\n+ Low_Risk_Percentage\n\nmust equal approximately 100%.\n\n==================================================\nR. DASHBOARD ACTION COUNTS\n==================================================\n\nCalculate directly from final R4:\n\nEscalate_Count =\nnumber of R4 records where Recommended_Action = ESCALATE\n\nManual_Review_Count =\nnumber of R4 records where Recommended_Action = MANUAL_REVIEW\n\nApprove_Count =\nnumber of R4 records where Recommended_Action = APPROVE\n\nValidation:\n\nEscalate_Count\n+ Manual_Review_Count\n+ Approve_Count\n\nmust equal:\n\nTotal_Customers\n\n==================================================\nS. DASHBOARD ACTION PERCENTAGES\n==================================================\n\nCalculate:\n\nEscalate_Percentage =\nEscalate_Count / Total_Customers * 100\n\nManual_Review_Percentage =\nManual_Review_Count / Total_Customers * 100\n\nApprove_Percentage =\nApprove_Count / Total_Customers * 100\n\nIf Total_Customers = 0:\n\nall percentages = 0\n\n==================================================\nT. EXECUTIVE SUMMARY\n==================================================\n\nGenerate a concise Executive_Summary for C-suite management.\n\nThe summary should:\n\n- describe the overall portfolio risk position\n- identify whether escalation or manual review is required\n- highlight the most important risk concentration\n- avoid unnecessary technical detail\n- remain factual\n- use only the final R4 results\n\nDo not invent portfolio trends.\n\nDo not invent historical comparisons.\n\nDo not invent percentages that differ from Dashboard.\n\nKeep the summary to approximately 2 to 4 concise sentences.\n\n==================================================\nU. TOP RED FLAGS\n==================================================\n\nDashboard.Top_Red_Flags must summarize the most important recurring or material red flags across final R4 records.\n\nUse only:\n\nR4.Main_Red_Flags\nR4.Supporting_Evidence\nspecialist findings already supplied\n\nDo not invent red flags.\n\nPrefer approximately 3 to 5 management-relevant red flags.\n\n==================================================\nV. KEY RECOMMENDATIONS\n==================================================\n\nDashboard.Key_Recommendations must provide concise management actions based on the final R4 portfolio.\n\nRecommendations may include actions such as:\n\n- immediate escalation of HIGH-risk customers\n- structured manual review of MEDIUM-risk customers\n- enhanced monitoring where appropriate\n- investigation of material regulatory or transaction findings\n\nRecommendations must be based on actual final R4 findings.\n\nDo not invent unrelated recommendations.\n\nPrefer approximately 3 concise recommendations.\n\n==================================================\nW. DASHBOARD REQUIRED STRUCTURE\n==================================================\n\nDashboard must contain exactly these fields:\n\nReport_Title\nExecutive_Summary\nTotal_Customers\nHigh_Risk_Count\nHigh_Risk_Percentage\nMedium_Risk_Count\nMedium_Risk_Percentage\nLow_Risk_Count\nLow_Risk_Percentage\nEscalate_Count\nEscalate_Percentage\nManual_Review_Count\nManual_Review_Percentage\nApprove_Count\nApprove_Percentage\nTop_Red_Flags\nKey_Recommendations\n\nSet:\n\nReport_Title = Management Risk Dashboard\n\n==================================================\nX. FINAL CUSTOMER-LEVEL CONSISTENCY VALIDATION\n==================================================\n\nBefore returning EACH R4 record, perform this validation again:\n\n1. Read R1_Risk_Level.\n2. Read R2_Risk_Level.\n3. Read R3_Risk_Level.\n\nThen independently verify:\n\nIf ANY specialist is HIGH:\n\nOverall_Risk_Level must be HIGH\nOverall_Risk_Score must be 90\nRecommended_Action must be ESCALATE\n\nElse if ANY specialist is MEDIUM:\n\nOverall_Risk_Level must be MEDIUM\nOverall_Risk_Score must be 60\nRecommended_Action must be MANUAL_REVIEW\n\nElse:\n\nOverall_Risk_Level must be LOW\nOverall_Risk_Score must be 20\nRecommended_Action must be APPROVE\n\nIf the current R4 record violates this rule:\n\ncorrect it before returning.\n\n==================================================\nY. FINAL PORTFOLIO VALIDATION\n==================================================\n\nBefore returning the final response, validate all of the following:\n\n1. R4 contains exactly one record per unique Customer_ID.\n\n2. No Customer_ID is missing.\n\n3. No Customer_ID is duplicated.\n\n4. No Customer_ID is invented.\n\n5. No HIGH specialist assessment has been downgraded.\n\n6. Every Overall_Risk_Score matches Overall_Risk_Level.\n\n7. Every Recommended_Action matches Overall_Risk_Level.\n\n8. Dashboard.Total_Customers equals R4.length.\n\n9. High_Risk_Count + Medium_Risk_Count + Low_Risk_Count equals Total_Customers.\n\n10. Escalate_Count + Manual_Review_Count + Approve_Count equals Total_Customers.\n\n11. Dashboard percentages correspond to the final counts.\n\n12. Dashboard statistics are based only on final R4.\n\n13. Management_Note contains normal text only.\n\n14. No malformed JSON fragments exist inside string fields.\n\n15. No customer is omitted because of LOW risk.\n\n16. The result works for any number of supplied customers.\n\nIf any validation fails:\n\ncorrect the result before returning.\n\n==================================================\nZ. FINAL OUTPUT FORMAT\n==================================================\n\nReturn exactly ONE JSON object with these two top-level fields:\n\nDashboard\nR4\n\nIMPORTANT:\n\n- Dashboard must be a top-level field.\n- R4 must be a top-level field.\n- Do not return Management_Report_SVG.\n- Do not return Management_Report_HTML.\n- Do not wrap the result inside another \"output\" object.\n- Do not return {\"output\": {...}}.\n- Do not add additional top-level fields.\n- Do not return markdown.\n- Do not use ```json code fences.\n- Do not return explanatory text before the JSON.\n- Do not return explanatory text after the JSON.\n\nThe response must begin exactly with:\n\n{\"Dashboard\":\n\nReturn ONLY the JSON object required by the connected Structured Output Parser."
+        }
+      },
+      "id": "1506f192-b469-46bf-8d04-2d833854bcb6",
+      "name": "AI Agent 4",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1120,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\"Dashboard\":{\"Report_Title\":\"Management Risk Dashboard\",\"Executive_Summary\":\"Management summary.\",\"Total_Customers\":10,\"High_Risk_Count\":3,\"High_Risk_Percentage\":30.0,\"Medium_Risk_Count\":4,\"Medium_Risk_Percentage\":40.0,\"Low_Risk_Count\":3,\"Low_Risk_Percentage\":30.0,\"Escalate_Count\":3,\"Escalate_Percentage\":30.0,\"Manual_Review_Count\":4,\"Manual_Review_Percentage\":40.0,\"Approve_Count\":3,\"Approve_Percentage\":30.0,\"Top_Red_Flags\":[\"High transaction activity\"],\"Key_Recommendations\":[\"Escalate high-risk customers\"]},\"R4\":[{\"Customer_ID\":\"CUST0001\",\"Customer_Name\":\"Example Customer\",\"R1_Risk_Level\":\"HIGH\",\"R2_Risk_Level\":\"MEDIUM\",\"R3_Risk_Level\":\"LOW\",\"Overall_Risk_Level\":\"HIGH\",\"Overall_Risk_Score\":90,\"Contributing_Agents\":[\"Agent-1\",\"Agent-2\"],\"Main_Red_Flags\":[\"Elevated customer risk\"],\"Supporting_Evidence\":[\"Specialist evidence\"],\"Recommended_Action\":\"ESCALATE\",\"Management_Note\":\"Priority management review recommended.\"}]}"
+      },
+      "id": "23cd4f91-20b1-44a6-9bbe-b9ec594ceb50",
+      "name": "Structured Output Parser2",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1248,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read Agent-4 output.\nconst source=$input.first().json;\nconst payload=source.output??source;\nconst dashboard=payload.Dashboard??{};\nconst r4=Array.isArray(payload.R4)?payload.R4:[];\n\n// Helpers.\nconst toNum=(v)=>{const n=Number(v);return Number.isFinite(n)?n:0;};\nconst esc=(v)=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');\nconst normalizeRisk=(v)=>String(v??'').trim().toUpperCase();\nconst normalizeAction=(v)=>String(v??'').trim().toUpperCase().replace(/[\\s-]+/g,'_');\nconst pct=(count,total)=>total>0?(count/total)*100:0;\nconst fmtPct=(v)=>`${Math.round(Number(v))}%`;\nconst riskRank={HIGH:3,MEDIUM:2,LOW:1};\n\n// Calculate ALL portfolio metrics from the complete R4 array.\n// LOW-risk customers remain part of these calculations.\nconst totalCustomers=r4.length;\nconst highRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='HIGH').length;\nconst mediumRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='MEDIUM').length;\nconst lowRiskCount=r4.filter(r=>normalizeRisk(r.Overall_Risk_Level)==='LOW').length;\n\nconst escalateCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='ESCALATE').length;\nconst manualReviewCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='MANUAL_REVIEW').length;\nconst approveCount=r4.filter(r=>normalizeAction(r.Recommended_Action)==='APPROVE').length;\n\nconst highRiskPct=pct(highRiskCount,totalCustomers);\nconst mediumRiskPct=pct(mediumRiskCount,totalCustomers);\nconst lowRiskPct=pct(lowRiskCount,totalCustomers);\nconst escalatePct=pct(escalateCount,totalCustomers);\nconst manualReviewPct=pct(manualReviewCount,totalCustomers);\nconst approvePct=pct(approveCount,totalCustomers);\n\n// Qualitative Agent-4 content.\nconst executiveSummary=dashboard.Executive_Summary??'Portfolio risk assessment completed from consolidated specialist assessments.';\nlet redFlags=Array.isArray(dashboard.Top_Red_Flags)?dashboard.Top_Red_Flags.filter(Boolean):[];\nlet recommendations=Array.isArray(dashboard.Key_Recommendations)?dashboard.Key_Recommendations.filter(Boolean):[];\n\n// Fallback red flags.\nif(redFlags.length===0){\n  const flags=[];\n  for(const customer of r4){\n    if(Array.isArray(customer.Main_Red_Flags))flags.push(...customer.Main_Red_Flags);\n  }\n  redFlags=[...new Set(flags.filter(Boolean))];\n}\n\n// Fallback recommendations.\nif(recommendations.length===0){\n  recommendations=[\n    'Prioritize HIGH-risk customers for immediate escalation.',\n    'Complete manual reviews for MEDIUM-risk customers.',\n    'Maintain standard monitoring for LOW-risk customers.'\n  ];\n}\n\n// Management table:\n// Show ONLY HIGH and MEDIUM customers.\n// R4 itself is NOT changed.\nconst priorityCustomers=[...r4]\n  .filter(customer=>{\n    const risk=normalizeRisk(customer.Overall_Risk_Level);\n    return risk==='HIGH'||risk==='MEDIUM';\n  })\n  .sort((a,b)=>{\n    const aRank=riskRank[normalizeRisk(a.Overall_Risk_Level)]??0;\n    const bRank=riskRank[normalizeRisk(b.Overall_Risk_Level)]??0;\n    if(bRank!==aRank)return bRank-aRank;\n    return toNum(b.Overall_Risk_Score)-toNum(a.Overall_Risk_Score);\n  })\n  .slice(0,5);\n\n// Text wrapping.\nconst wrapText=(text,maxCharacters=125,maxLines=3)=>{\n  const words=String(text??'').split(/\\s+/).filter(Boolean);\n  const lines=[];\n  let line='';\n  for(const word of words){\n    const candidate=line?`${line} ${word}`:word;\n    if(candidate.length>maxCharacters&&line){\n      lines.push(line);\n      line=word;\n      if(lines.length>=maxLines-1)break;\n    }else{\n      line=candidate;\n    }\n  }\n  if(line&&lines.length<maxLines)lines.push(line);\n  return lines;\n};\n\n// Donut chart.\nconst donut=(cx,cy,radius,percent,color,title,subtitle)=>{\n  const safePercent=Math.max(0,Math.min(100,percent));\n  const circumference=2*Math.PI*radius;\n  const filled=circumference*safePercent/100;\n  const remaining=circumference-filled;\n  return `<text x='${cx}' y='${cy-radius-22}' text-anchor='middle' class='chart-title'>${esc(title)}</text><circle cx='${cx}' cy='${cy}' r='${radius}' fill='none' stroke='#E5E7EB' stroke-width='18'/><circle cx='${cx}' cy='${cy}' r='${radius}' fill='none' stroke='${color}' stroke-width='18' stroke-linecap='round' stroke-dasharray='${filled} ${remaining}' transform='rotate(-90 ${cx} ${cy})'/><text x='${cx}' y='${cy+11}' text-anchor='middle' class='donut-value'>${fmtPct(safePercent)}</text><text x='${cx}' y='${cy+radius+28}' text-anchor='middle' class='chart-subtitle'>${esc(subtitle)}</text>`;\n};\n\n// Bullet list.\nconst bulletList=(items,x,firstY,lineHeight,dotColor,maxItems=3,maxChars=68)=>items.slice(0,maxItems).map((item,index)=>{\n  const y=firstY+index*lineHeight;\n  return `<circle cx='${x}' cy='${y-4}' r='5' fill='${dotColor}'/><text x='${x+16}' y='${y}' class='bullet-text'>${esc(String(item).slice(0,maxChars))}</text>`;\n}).join('');\n\n// Palette.\nconst NAVY='#243C78';\nconst HIGH='#D62828';\nconst MEDIUM='#D88B00';\nconst LOW='#53A83F';\nconst PAGE='#F4F6F9';\nconst PANEL='#FFFFFF';\nconst PANEL_HEADER='#E1E4E8';\nconst BORDER='#CDD3DB';\nconst PRIMARY_TEXT='#152238';\n\n// Executive summary.\nconst summaryLines=wrapText(executiveSummary,125,3);\nconst summarySvg=summaryLines.map((line,index)=>`<text x='60' y='${292+index*24}' class='summary-text'>${esc(line)}</text>`).join('');\n\n// Customer rows.\n// Column header ends at y=726.\n// First customer row begins at y=728.\nconst tableRows=priorityCustomers.map((customer,index)=>{\n  const rowTop=728+index*24;\n  const textY=rowTop+16;\n  const risk=normalizeRisk(customer.Overall_Risk_Level);\n  const action=normalizeAction(customer.Recommended_Action);\n  const riskColor=risk==='HIGH'?HIGH:MEDIUM;\n  const actionColor=action==='ESCALATE'?HIGH:MEDIUM;\n  const customerLabel=`${customer.Customer_ID??''}${customer.Customer_Name?` - ${customer.Customer_Name}`:''}`;\n  return `<rect x='838' y='${rowTop}' width='704' height='24' fill='${index%2===0?'#FFFFFF':'#F7F9FC'}'/><line x1='838' y1='${rowTop+24}' x2='1542' y2='${rowTop+24}' stroke='#E4E7EB'/><text x='852' y='${textY}' class='table-row'>${esc(customerLabel.slice(0,34))}</text><text x='1110' y='${textY}' class='table-risk' fill='${riskColor}'>${esc(risk)}</text><text x='1245' y='${textY}' class='table-row'>${esc(customer.Overall_Risk_Score??'')}</text><text x='1350' y='${textY}' class='table-action' fill='${actionColor}'>${esc(String(customer.Recommended_Action??'').replace(/_/g,' '))}</text>`;\n}).join('');\n\n// Portfolio distribution widths.\nconst mixWidth=600;\nconst highWidth=mixWidth*highRiskPct/100;\nconst mediumWidth=mixWidth*mediumRiskPct/100;\nconst lowWidth=mixWidth*lowRiskPct/100;\n\n// Final SVG.\nconst svg=`<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid meet' style='width:100%;height:auto;max-width:100vw;display:block;background:${PAGE}'>\n\n<style>\ntext{font-family:Arial,Helvetica,sans-serif}\n.header-title{font-size:32px;font-weight:700}\n.header-subtitle{font-size:15px;font-weight:400}\n.header-legend{font-size:14px;font-weight:700}\n.kpi-label{font-size:14px;font-weight:700}\n.kpi-value{font-size:36px;font-weight:700}\n.kpi-percentage{font-size:17px;font-weight:700}\n.summary-heading{font-size:16px;font-weight:700}\n.summary-text{font-size:16px;font-weight:400;fill:#334155}\n.section-title{font-size:17px;font-weight:700}\n.chart-title{font-size:17px;font-weight:700;fill:#152238}\n.donut-value{font-size:34px;font-weight:700;fill:#111827}\n.chart-subtitle{font-size:13px;font-weight:500;fill:#5D6B82}\n.portfolio-title{font-size:14px;font-weight:700}\n.legend-text{font-size:14px;font-weight:500;fill:#334155}\n.bullet-heading{font-size:14px;font-weight:700}\n.bullet-text{font-size:13px;font-weight:400;fill:#334155}\n.table-header{font-size:13px;font-weight:700;fill:#FFFFFF}\n.table-row{font-size:11.5px;font-weight:400;fill:#111827}\n.table-risk{font-size:11.5px;font-weight:700}\n.table-action{font-size:11px;font-weight:700}\n.recommendation-title{font-size:12px;font-weight:700}\n.recommendation-text{font-size:11.5px;font-weight:400;fill:#334155}\n</style>\n\n<rect x='0' y='0' width='1600' height='900' fill='${PAGE}'/>\n\n<!-- HEADER -->\n<rect x='18' y='16' width='1564' height='94' rx='16' fill='${NAVY}'/>\n<text x='50' y='56' class='header-title' fill='#FFFFFF'>Management Risk Dashboard</text>\n<text x='50' y='86' class='header-subtitle' fill='#E2E8F0'>Agentic AI Risk &amp; Compliance Decision Dashboard</text>\n\n<circle cx='1305' cy='49' r='9' fill='${HIGH}'/>\n<text x='1324' y='55' class='header-legend' fill='#FFFFFF'>HIGH</text>\n<circle cx='1405' cy='49' r='9' fill='${MEDIUM}'/>\n<text x='1424' y='55' class='header-legend' fill='#FFFFFF'>MEDIUM</text>\n<circle cx='1522' cy='49' r='9' fill='${LOW}'/>\n<text x='1541' y='55' class='header-legend' fill='#FFFFFF'>LOW</text>\n\n<!-- KPI CARDS -->\n<rect x='30' y='128' width='365' height='94' rx='14' fill='#E6E8EC'/>\n<text x='52' y='158' class='kpi-label' fill='#475569'>TOTAL CUSTOMERS</text>\n<text x='52' y='205' class='kpi-value' fill='#111827'>${totalCustomers}</text>\n\n<rect x='430' y='128' width='365' height='94' rx='14' fill='#FCE7E7'/>\n<text x='452' y='158' class='kpi-label' fill='#991B1B'>HIGH RISK</text>\n<text x='452' y='205' class='kpi-value' fill='#991B1B'>${highRiskCount}</text>\n<text x='520' y='202' class='kpi-percentage' fill='#991B1B'>${fmtPct(highRiskPct)}</text>\n\n<rect x='830' y='128' width='365' height='94' rx='14' fill='#FFF2BD'/>\n<text x='852' y='158' class='kpi-label' fill='#92400E'>MEDIUM RISK</text>\n<text x='852' y='205' class='kpi-value' fill='#92400E'>${mediumRiskCount}</text>\n<text x='920' y='202' class='kpi-percentage' fill='#92400E'>${fmtPct(mediumRiskPct)}</text>\n\n<rect x='1230' y='128' width='340' height='94' rx='14' fill='#DAF2DB'/>\n<text x='1252' y='158' class='kpi-label' fill='#166534'>LOW RISK</text>\n<text x='1252' y='205' class='kpi-value' fill='#166534'>${lowRiskCount}</text>\n<text x='1320' y='202' class='kpi-percentage' fill='#166534'>${fmtPct(lowRiskPct)}</text>\n\n<!-- EXECUTIVE SUMMARY -->\n<rect x='30' y='240' width='1540' height='108' rx='12' fill='#FFFFFF' stroke='${BORDER}'/>\n<rect x='30' y='240' width='6' height='108' rx='3' fill='#3B82F6'/>\n<text x='58' y='270' class='summary-heading' fill='#243C78'>EXECUTIVE SUMMARY</text>\n${summarySvg}\n\n<!-- RISK POSTURE -->\n<rect x='30' y='368' width='755' height='250' fill='${PANEL}' stroke='${BORDER}'/>\n<rect x='30' y='368' width='755' height='42' fill='${PANEL_HEADER}'/>\n<text x='52' y='395' class='section-title' fill='${PRIMARY_TEXT}'>COMPANY COMPLIANCE AND RISK POSTURE</text>\n\n${donut(180,510,60,highRiskPct,HIGH,'Overall Portfolio Risk','HIGH-risk portfolio share')}\n${donut(410,510,60,mediumRiskPct,MEDIUM,'Medium-risk Share','Customers requiring review')}\n${donut(640,510,60,lowRiskPct,LOW,'Low-risk Share','Customers under monitoring')}\n\n<!-- MANAGEMENT ACTIONS -->\n<rect x='815' y='368' width='755' height='250' fill='${PANEL}' stroke='${BORDER}'/>\n<rect x='815' y='368' width='755' height='42' fill='${PANEL_HEADER}'/>\n<text x='837' y='395' class='section-title' fill='${PRIMARY_TEXT}'>MANAGEMENT ACTIONS</text>\n\n${donut(955,510,60,escalatePct,HIGH,'ESCALATE',`${escalateCount} customer${escalateCount===1?'':'s'}`)}\n${donut(1190,510,60,manualReviewPct,MEDIUM,'MANUAL REVIEW',`${manualReviewCount} customer${manualReviewCount===1?'':'s'}`)}\n${donut(1425,510,60,approvePct,LOW,'APPROVE / MONITOR',`${approveCount} customer${approveCount===1?'':'s'}`)}\n\n<!-- RISK DISTRIBUTION -->\n<rect x='30' y='636' width='755' height='214' fill='${PANEL}' stroke='${BORDER}'/>\n<rect x='30' y='636' width='755' height='42' fill='${PANEL_HEADER}'/>\n<text x='52' y='663' class='section-title' fill='${PRIMARY_TEXT}'>RISK DISTRIBUTION &amp; KEY FLAGS</text>\n\n<text x='58' y='704' class='portfolio-title' fill='#374151'>Portfolio Mix</text>\n\n<rect x='58' y='718' width='600' height='30' rx='8' fill='#E5E7EB'/>\n<rect x='58' y='718' width='${highWidth}' height='30' rx='8' fill='${HIGH}'/>\n<rect x='${58+highWidth}' y='718' width='${mediumWidth}' height='30' fill='${MEDIUM}'/>\n<rect x='${58+highWidth+mediumWidth}' y='718' width='${lowWidth}' height='30' rx='8' fill='${LOW}'/>\n\n<circle cx='70' cy='779' r='8' fill='${HIGH}'/>\n<text x='90' y='785' class='legend-text'>HIGH ${highRiskCount} / ${fmtPct(highRiskPct)}</text>\n\n<circle cx='285' cy='779' r='8' fill='${MEDIUM}'/>\n<text x='305' y='785' class='legend-text'>MEDIUM ${mediumRiskCount} / ${fmtPct(mediumRiskPct)}</text>\n\n<circle cx='535' cy='779' r='8' fill='${LOW}'/>\n<text x='555' y='785' class='legend-text'>LOW ${lowRiskCount} / ${fmtPct(lowRiskPct)}</text>\n\n<text x='58' y='815' class='bullet-heading' fill='#9A3412'>Top Red Flags</text>\n${bulletList(redFlags,70,834,14,HIGH,3,67)}\n\n<!-- HIGH + MEDIUM CUSTOMER TABLE -->\n<rect x='815' y='636' width='755' height='214' fill='${PANEL}' stroke='${BORDER}'/>\n<rect x='815' y='636' width='755' height='42' fill='${PANEL_HEADER}'/>\n<text x='837' y='663' class='section-title' fill='${PRIMARY_TEXT}'>HIGH &amp; MEDIUM RISK CUSTOMERS</text>\n\n<rect x='838' y='690' width='704' height='36' rx='4' fill='#4B5563'/>\n\n<text x='852' y='714' class='table-header'>Customer</text>\n<text x='1110' y='714' class='table-header'>Overall Risk</text>\n<text x='1245' y='714' class='table-header'>Score</text>\n<text x='1350' y='714' class='table-header'>Action</text>\n\n${tableRows}\n\n<!-- MANAGEMENT RECOMMENDATIONS -->\n<rect x='30' y='860' width='1540' height='32' rx='7' fill='#EDF4FF' stroke='#BFDBFE'/>\n\n<text x='48' y='881' class='recommendation-title' fill='#1D4ED8'>MANAGEMENT RECOMMENDATIONS:</text>\n\n<text x='272' y='881' class='recommendation-text'>${esc(String(recommendations[0]??'').slice(0,58))}</text>\n<text x='730' y='881' class='recommendation-text'>${esc(String(recommendations[1]??'').slice(0,58))}</text>\n<text x='1180' y='881' class='recommendation-text'>${esc(String(recommendations[2]??'').slice(0,47))}</text>\n\n</svg>`.trim();\n\n// Return deterministic dashboard output.\nreturn [{\n  json:{\n    Management_Report_SVG:svg,\n    Calculated_Metrics:{\n      Total_Customers:totalCustomers,\n      High_Risk_Count:highRiskCount,\n      High_Risk_Percentage:Number(highRiskPct.toFixed(1)),\n      Medium_Risk_Count:mediumRiskCount,\n      Medium_Risk_Percentage:Number(mediumRiskPct.toFixed(1)),\n      Low_Risk_Count:lowRiskCount,\n      Low_Risk_Percentage:Number(lowRiskPct.toFixed(1)),\n      Escalate_Count:escalateCount,\n      Escalate_Percentage:Number(escalatePct.toFixed(1)),\n      Manual_Review_Count:manualReviewCount,\n      Manual_Review_Percentage:Number(manualReviewPct.toFixed(1)),\n      Approve_Count:approveCount,\n      Approve_Percentage:Number(approvePct.toFixed(1))\n    }\n  }\n}];"
+      },
+      "id": "cd26f7aa-bde3-4879-83fa-775c5df07fb6",
+      "name": "Build Management Dashboard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1472,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "Management_Report_SVG",
+        "options": {
+          "fileName": "Management_Risk_Dashboard.svg"
+        }
+      },
+      "id": "95ed50d3-fdde-4482-acbd-7a08e24a26ef",
+      "name": "Generate Management SVG",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1696,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.R4",
+        "options": {}
+      },
+      "id": "34d7cba5-d1c0-45c2-9edd-ff9935e34a01",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1.1,
+      "position": [
+        1472,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "fileName": "R4_Agentic_AI_Recommendation.csv"
+        }
+      },
+      "id": "dcd6e3b3-e0e7-435b-a269-bc6af7e74134",
+      "name": "Generate R4 CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1696,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -688,
+        928
+      ],
+      "id": "c3668a59-6d3b-456d-b0cf-31c130a57b9c",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -464,
+        -32
+      ],
+      "id": "7ce2bc17-26cf-495d-8606-04f7c5f4e43a",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -400,
+        400
+      ],
+      "id": "877baaa1-47cb-43d0-8d19-b4a50d3ace5c",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        976,
+        432
+      ],
+      "id": "6f746e35-fd3f-4cf6-90fe-876d858b047d",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "F1": {
+            "filename": "F1_Customer_Profile_KYC_4_HIGH_1_MEDIUM.csv",
+            "mimetype": "text/csv",
+            "size": 849
+          },
+          "F2": {
+            "filename": "F2_Transaction_Report_4_HIGH_1_MEDIUM.csv",
+            "mimetype": "text/csv",
+            "size": 995
+          },
+          "Agent_1_Rules": {
+            "filename": "Agent1_Rules.csv",
+            "mimetype": "text/csv",
+            "size": 305
+          },
+          "F4": [
+            {
+              "filename": "F4_Cash_Deposit_4_HIGH_1_MEDIUM.csv",
+              "mimetype": "text/csv",
+              "size": 328
+            }
+          ],
+          "F5": [
+            {
+              "filename": "F5_Regulatory_4_HIGH_1_MEDIUM.csv",
+              "mimetype": "text/csv",
+              "size": 523
+            }
+          ],
+          "Agent_2_Rules": {
+            "filename": "Agent2_Rules.csv",
+            "mimetype": "text/csv",
+            "size": 391
+          },
+          "Agent_3_Rules": {
+            "filename": "Agent3_Rules.csv",
+            "mimetype": "text/csv",
+            "size": 333
+          },
+          "F3": [
+            {
+              "filename": "F3_Transfer_4_HIGH_1_MEDIUM.csv",
+              "mimetype": "text/csv",
+              "size": 521
+            }
+          ],
+          "submittedAt": "2026-10-26T06:10:38.001+00:00",
+          "formMode": "test"
+        },
+        "binary": {
+          "F1": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "F1_Customer_Profile_KYC_4_HIGH_1_MEDIUM.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/d24fb862-944c-4b19-91b3-1c2a8ed7c526",
+            "fileSize": "849 B",
+            "bytes": 849
+          },
+          "F2": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "F2_Transaction_Report_4_HIGH_1_MEDIUM.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/f951211c-3905-4bd5-9d65-b477db34cc8c",
+            "fileSize": "995 B",
+            "bytes": 995
+          },
+          "Agent_1_Rules": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "Agent1_Rules.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/8b9a7c1f-e2af-4283-a22e-85e65f674623",
+            "fileSize": "305 B",
+            "bytes": 305
+          },
+          "F4": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "F4_Cash_Deposit_4_HIGH_1_MEDIUM.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/6602cb5c-b72a-4dec-b8fe-a342c2b815cb",
+            "fileSize": "328 B",
+            "bytes": 328
+          },
+          "F5": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "F5_Regulatory_4_HIGH_1_MEDIUM.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/c56fa81d-cc99-47db-a09f-c292fd2518bd",
+            "fileSize": "523 B",
+            "bytes": 523
+          },
+          "Agent_2_Rules": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "Agent2_Rules.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/58932be7-161a-4a49-8734-135fe1203e7d",
+            "fileSize": "391 B",
+            "bytes": 391
+          },
+          "F3": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "F3_Transfer_4_HIGH_1_MEDIUM.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/6a3dafdd-e63c-4976-b4a6-e4118607ca62",
+            "fileSize": "521 B",
+            "bytes": 521
+          },
+          "Agent_3_Rules": {
+            "mimeType": "text/csv",
+            "fileType": "text",
+            "fileExtension": "csv",
+            "data": "filesystem-v2",
+            "fileName": "Agent3_Rules.csv",
+            "id": "filesystem-v2:workflows/yVG8a41WtzJshABG/executions/temp/binary_data/a494adb7-18c4-48ee-b047-3e8b684821d4",
+            "fileSize": "333 B",
+            "bytes": 333
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract F2 - Transaction Report",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Agent 1 Rules",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract F3 - Transfer File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract F4 - Cash Deposit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Agent 2 Rules",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Regulatory Screening File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Agent 3 Rules",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract F1 - Customer Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract F2 - Transaction Report": {
+      "main": [
+        [
+          {
+            "node": "Merge F1&F2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract Agent 1 Rules": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract F3 - Transfer File": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract F4 - Cash Deposit": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract Agent 2 Rules": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Agent-2 Rules",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Agent-2 Rules": {
+      "main": [
+        [
+          {
+            "node": "Wait for Transaction Data + Rules",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Regulatory Screening File": {
+      "main": [
+        [
+          {
+            "node": "Wait for Customer Data + Rules3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Agent 3 Rules": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Wait for Customer Data + Rules3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract F1 - Customer Profile": {
+      "main": [
+        [
+          {
+            "node": "Merge F1&F2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge F1&F2": {
+      "main": [
+        [
+          {
+            "node": "Join F1&F2 by customer_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Join F1&F2 by customer_id": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Join F4&F3 By Customer_ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Join F4&F3 By Customer_ID": {
+      "main": [
+        [
+          {
+            "node": "Wait for Transaction Data + Rules",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Transaction Data + Rules": {
+      "main": [
+        [
+          {
+            "node": "AI Agent 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Customer Data + Rules3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent 1": {
+      "main": [
+        [
+          {
+            "node": "Merge Specialist Reports",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Generate R1 CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser4": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent 1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Specialist Reports": {
+      "main": [
+        [
+          {
+            "node": "Normalize Specialist Reports",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent 2": {
+      "main": [
+        [
+          {
+            "node": "Merge Specialist Reports",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Generate R2 CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent 2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent 3": {
+      "main": [
+        [
+          {
+            "node": "Merge Specialist Reports",
+            "type": "main",
+            "index": 2
+          },
+          {
+            "node": "Generate R3 CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Specialist Reports": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Specialist Reports",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Specialist Reports": {
+      "main": [
+        [
+          {
+            "node": "AI Agent 4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent 4": {
+      "main": [
+        [
+          {
+            "node": "Build Management Dashboard",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent 4",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Management Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Generate Management SVG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Generate R4 CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent 1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent 2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent 4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4e4cc5b0-1a3a-4e97-97dd-4186debec8c2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "aef2ec5bf3c01cd4f4fddbc26d63625b440fad2467415523ff27d978f6287563"
+  },
+  "nodeGroups": [],
+  "id": "yVG8a41WtzJshABG",
+  "tags": []
+}

@@ -1,0 +1,6 @@
+﻿output.Customer_ID,output.Customer_Name,output.Risk_Level,output.Summary,output.Recommended_Action
+CUST6201,Nora Lim,LOW,"No rules triggered, customer profile is low risk.",APPROVE
+CUST6202,Jason Tan,LOW,"No rules triggered, customer profile is within acceptable risk parameters.",APPROVE
+CUST6203,Aisha Khan,LOW,"No rules triggered, customer profile is within acceptable limits.",APPROVE
+CUST6204,Ravi Menon,LOW,"No rules triggered, customer profile is within acceptable risk parameters.",APPROVE
+CUST6205,Sara Lee,LOW,"No rules triggered, customer profile is within acceptable risk parameters.",APPROVE

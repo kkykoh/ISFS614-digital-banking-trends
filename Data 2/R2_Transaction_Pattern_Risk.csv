@@ -1,0 +1,26 @@
+﻿output.Customer_ID,output.Customer_Name,output.Risk_Level,output.Summary,output.Recommended_Action
+CUST6201,Nora Lim,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6202,Jason Tan,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6203,Aisha Khan,LOW,No rules triggered based on the current transaction record.,APPROVE
+CUST6204,Ravi Menon,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6205,Sara Lee,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6206,Ethan Goh,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6207,Mei Chen,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6208,Lucas Wong,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6209,Priya Nair,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6210,Daniel Ong,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6211,Hannah Teo,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6212,Marcus Chua,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6213,Nur Aisyah,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6214,Samuel Lee,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6215,Irene Koh,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6216,Adrian Tan,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6217,Farah Aziz,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6218,Jonathan Lim,LOW,No rules triggered based on the current transaction record.,APPROVE
+CUST6219,Kavita Rao,LOW,No rules triggered based on the transaction record.,APPROVE
+CUST6220,Nicholas Yeo,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6221,Rachel Ng,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6222,Shawn Low,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6223,Vanessa Ho,LOW,No rules triggered based on the current transaction record.,APPROVE
+CUST6224,Wei Jie,LOW,No rules triggered based on the customer's transaction record.,APPROVE
+CUST6225,Zara Malik,LOW,No rules triggered based on the transaction record.,APPROVE

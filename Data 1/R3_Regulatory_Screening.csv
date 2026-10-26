@@ -1,0 +1,26 @@
+﻿output.Customer_ID,output.Customer_Name,output.Risk_Level,output.Triggered_Rules.0,output.Supporting_Evidence.0,output.Summary,output.Recommended_Action
+CUST7301,Chloe Tan,HIGH,A3-R03,Watchlist_Flag = Yes matched rule condition = Yes; Severity = HIGH,"The regulatory screening triggered a rule due to the Watchlist Flag being set to Yes, which has a HIGH severity.",ESCALATE
+CUST7302,Ryan Lim,HIGH,A3-R02,Sanctions_Exact_Match = Yes matched rule condition = Yes; Severity = HIGH,"The regulatory screening triggered a rule due to a sanctions exact match, resulting in a high risk level.",ESCALATE
+CUST7303,Aisha Noor,MEDIUM,A3-R04,Adverse_Media_Flag = Yes matched rule condition = Yes; Severity = MEDIUM,One rule was triggered based on the Adverse Media Flag.,MANUAL_REVIEW
+CUST7304,Vikram Nair,MEDIUM,A3-R04,Adverse_Media_Flag = Yes matched rule condition = Yes; Severity = MEDIUM,One rule was triggered based on the adverse media flag.,MANUAL_REVIEW
+CUST7305,Hana Lee,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7306,Ethan Goh,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7307,Mei Chen,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7308,Arjun Kumar,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7309,Sofia Rahman,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7310,Marcus Teo,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7311,Nadia Wong,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7312,Darren Chua,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7313,Priya Menon,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7314,Lucas Ong,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7315,Farah Aziz,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7316,Joshua Ng,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7317,Anika Shah,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7318,Samuel Koh,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7319,Lina Lim,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7320,Dev Patel,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7321,Rachel Tan,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7322,Imran Hassan,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7323,Natalie Lee,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7324,Kevin Yeo,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
+CUST7325,Sara Nair,LOW,,,No supplied Agent-3 regulatory rule was triggered.,APPROVE
